@@ -41,5 +41,6 @@ github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_
 
 cd ..
 
+replace ${template_project_name}_app ${custom_project_name}_app
 replace ${template_project_name}_design ${custom_project_name}_design
 # ./rename_project.sh ${template_project_name} ${custom_project_name}

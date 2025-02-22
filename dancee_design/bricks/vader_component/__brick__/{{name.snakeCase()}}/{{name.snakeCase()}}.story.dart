@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:{{package.snakeCase()}}/{{package.snakeCase()}}.dart';
+import '../../../{{package.snakeCase()}}_exports.dart';
 import 'package:storybook_toolkit/storybook_toolkit.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:{{package.snakeCase()}}/{{package.snakeCase()}}.dart';
+import '../../../{{package.snakeCase()}}_exports.dart';
 import 'package:flutter/material.dart';
 
 
