@@ -35,6 +35,11 @@ github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_
 
 cd ../${custom_project_name}_app
 
-curl $address/${template_project_name}_project/${template_project_name}_design/commands.yaml > commands.yaml
-github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_project_name}_project/${template_project_name}_design/vader
-# github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_project_name}_project/${template_project_name}_design/bin
+curl $address/${template_project_name}_project/${template_project_name}_app/commands.yaml > commands.yaml
+github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_project_name}_project/${template_project_name}_app/vader
+# github-dlr https://github.com/mjablecnik/vader_framework/tree/master/${template_project_name}_project/${template_project_name}_app/bin
+
+cd ..
+
+replace ${template_project_name}_design ${custom_project_name}_design
+# ./rename_project.sh ${template_project_name} ${custom_project_name}
