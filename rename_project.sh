@@ -36,8 +36,8 @@ cd ..
 replace ${old_name}_app ${new_name}_app
 replace ${old_name}_design ${new_name}_design
 
-echo '${new_name}_app' > .gitscope
-echo '${new_name}_design' >> .gitscope
+echo "${new_name}_app" > .gitscope
+echo "${new_name}_design" >> .gitscope
 
 sed -i '' "s/custom_project_name=${old_name}/custom_project_name=${new_name}/g" update_project.sh
 
