@@ -29,6 +29,8 @@ cd ${new_name}_design
 flutter clean
 rm -rf *.iml
 mv lib/${old_name}_design.dart lib/${new_name}_design.dart
+mv src/${old_name}_design.dart src/${new_name}_design.dart
+mv src/${old_name}_design_exports.dart src/${new_name}_design_exports.dart
 cd ..
 
 replace ${old_name}_app ${new_name}_app
@@ -40,3 +42,11 @@ echo '${new_name}_design' >> .gitscope
 sed -i '' "s/custom_project_name=${old_name}/custom_project_name=${new_name}/g" update_project.sh
 
 rm -rf .idea/
+
+cd ${new_name}_app
+flutter pub get
+cd ..
+
+cd ${new_name}_design
+flutter pub get
+cd ..
