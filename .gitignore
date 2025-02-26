@@ -43,4 +43,5 @@
 settings.dart
 
 .fvm/
+node_modules/
 
