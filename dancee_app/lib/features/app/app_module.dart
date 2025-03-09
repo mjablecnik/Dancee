@@ -1,5 +1,3 @@
-import 'package:dancee_app/features/app/pages/first_page.dart';
-import 'package:dancee_app/features/app/pages/second_page.dart';
 import 'package:dancee_app/features/app/pages/initial_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vader_app/vader_app.dart';
@@ -17,9 +15,7 @@ class AppModule extends VaderModule {
 }
 
 enum AppRoutes {
-  initial(InitialPage()),
-  first(FirstPage()),
-  second(SecondPage());
+  initial(InitialPage());
 
   const AppRoutes(Widget page) : _page = page;
 
@@ -31,7 +27,5 @@ enum AppRoutes {
 
   static List<GoRoute> get routes => [
     Routes.route(routePath, AppRoutes.initial._page),
-    Routes.route(routePath, AppRoutes.first._page),
-    Routes.route(routePath, AppRoutes.second._page),
   ];
 }
