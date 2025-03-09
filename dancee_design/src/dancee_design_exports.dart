@@ -15,7 +15,6 @@ export 'design/layouts/page_layout/page_layout.dart';
 export 'constants/colors.dart';
 export 'constants/utils.dart';
 export 'constants/text_styles.dart';
-export 'constants/vader_app.dart';
 
 export 'package:dancee_design/design/design.theme.dart';
 export 'package:dancee_design/design/components/components.style.dart';

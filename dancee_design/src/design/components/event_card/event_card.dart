@@ -1,13 +1,5 @@
-import 'package:dancee_design/design/components/chip_list/chip_list.dart';
-import 'package:dancee_design/design/design.theme.dart';
-import 'package:dancee_design/design/elements/chip/chip.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' show Icons;
-import '../../../constants/colors.dart';
-import '../../../constants/text_styles.dart';
-import '../../../constants/utils.dart';
-import '../../elements/buttons/link_button/link_button.dart';
-import 'event_card.style.dart';
+import '../../../dancee_design_exports.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({

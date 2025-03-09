@@ -6,7 +6,7 @@ part 'event.freezed.dart';
 part 'event.g.dart';
 
 @freezed
-class Event extends BaseEntity with _$Event {
+class Event extends VaderEntity with _$Event {
   const Event._();
 
   const factory Event({
@@ -24,7 +24,7 @@ class Event extends BaseEntity with _$Event {
 }
 
 @freezed
-class EventInfo extends BaseEntity with _$EventInfo {
+class EventInfo extends VaderEntity with _$EventInfo {
   const EventInfo._();
 
   const factory EventInfo({

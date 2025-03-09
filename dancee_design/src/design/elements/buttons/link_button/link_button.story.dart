@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dancee_design/dancee_design.dart';
 import 'package:storybook_toolkit/storybook_toolkit.dart';
+
+import '../../../../dancee_design_exports.dart';
 
 //region Knobs
 String textKnob(BuildContext context) => context.knobs.text(label: 'Button text', initial: 'Default text');

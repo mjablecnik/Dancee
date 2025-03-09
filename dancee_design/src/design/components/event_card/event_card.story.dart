@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:dancee_design/dancee_design.dart';
+import '../../../dancee_design_exports.dart';
 import 'package:storybook_toolkit/storybook_toolkit.dart';
 
 //region Knobs

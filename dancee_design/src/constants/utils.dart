@@ -1,4 +1,4 @@
-import 'package:dancee_design/dancee_design.dart';
+import '../dancee_design_exports.dart';
 import 'package:flutter/material.dart';
 
 enum ButtonSize { small, medium, large }
@@ -10,11 +10,7 @@ class Utils {
 }
 
 class ButtonUtils {
-  static ({
-  Size buttonSize,
-  TextStyle textStyle,
-  BorderRadius borderRadius,
-  }) resolveBySize(ButtonSize size) {
+  static ({Size buttonSize, TextStyle textStyle, BorderRadius borderRadius}) resolveBySize(ButtonSize size) {
     final buttonSize = switch (size) {
       ButtonSize.small => Size(132, 32),
       ButtonSize.medium => Size(165, 36),
@@ -33,10 +29,6 @@ class ButtonUtils {
       ButtonSize.large => BorderRadius.circular(12),
     };
 
-    return (
-    buttonSize: buttonSize,
-    textStyle: textStyle,
-    borderRadius: borderRadius,
-    );
+    return (buttonSize: buttonSize, textStyle: textStyle, borderRadius: borderRadius);
   }
 }

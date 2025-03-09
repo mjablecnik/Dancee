@@ -2,7 +2,15 @@
 Design package for example project.
 
 ## Develop and test with Flutter version
-3.27.2
+3.29.0
+
+## Setup FVM, Task and Flutter
+  ```
+  1) Run: dart pub global activate fvm
+  2) Run: fvm install <flutter version>
+  3) Run: fvm use <flutter version>
+  4) Install Task Manager by this manual: https://taskfile.dev/installation/
+  ```
 
 ## Usage
 1) Add dancee_design into your project dependencies:

@@ -1,4 +1,4 @@
-import 'package:dancee_design/dancee_design.dart';
+import '../../../../dancee_design_exports.dart';
 import 'package:flutter/material.dart';
 
 class OutlineButton extends StatelessWidget {

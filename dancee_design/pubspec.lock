@@ -878,10 +878,10 @@ packages:
     dependency: "direct main"
     description:
       name: vader_design
-      sha256: "0f92de9d6278e2ec387bfb1d0eb115e70bc1f512bdbb0d192cf11a04880186e3"
+      sha256: "04d0f4523a7c674c86189ea634d94e9c2b2d8f8b9ee40543857c79db66cf8f24"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   vader_popup:
     dependency: transitive
     description:

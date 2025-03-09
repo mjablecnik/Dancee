@@ -5,7 +5,7 @@ part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-class User extends BaseEntity with _$User {
+class User extends VaderEntity with _$User {
   const User._();
 
   const factory User({
