@@ -9,12 +9,12 @@ class Address with _$Address {
   const Address._();
 
   const factory Address({
-    @Default("") String name,
-    @Default("") String country,
-    @Default("") String number,
-    @Default("") @JsonKey(name: 'postal_code') String postalCode,
-    @Default("") String street,
-    @Default("") String town,
+    String name,
+    String street,
+    String number,
+    String town,
+    String country,
+    String postalCode,
   }) = _Address;
 
   String format() => "$street\u00A0$number, $postalCode\u00A0$town";
