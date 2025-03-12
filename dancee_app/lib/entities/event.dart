@@ -1,4 +1,4 @@
-import 'package:dancee_app/entities/address.dart';
+import 'package:dancee_app/entities/venue.dart';
 import 'package:vader_app/vader_app.dart';
 
 part 'event.freezed.dart';
@@ -13,7 +13,7 @@ class Event extends VaderEntity with _$Event {
     required int id,
     required String title,
     required String description,
-    required Address address,
+    required Venue venue,
     required DateTime since,
     required DateTime until,
     required List<String> tags,

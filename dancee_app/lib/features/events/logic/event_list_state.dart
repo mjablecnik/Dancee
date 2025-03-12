@@ -7,8 +7,6 @@ part 'event_list_state.freezed.dart';
 sealed class EventListState with _$EventListState {
   const EventListState._();
 
-  const factory EventListState.init() = EventListStateInit;
-
   const factory EventListState.loading() = EventListStateLoading;
 
   const factory EventListState.failed(error) = EventListStateFailed;

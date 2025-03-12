@@ -3,7 +3,7 @@ import 'package:dancee_app/features/events/event_repository.dart';
 import 'package:vader_app/vader_app.dart';
 
 class EventListCubit extends Cubit<EventListState> {
-  EventListCubit({required this.eventRepository}) : super(EventListState.init()) {
+  EventListCubit({required this.eventRepository}) : super(EventListState.loading()) {
     init();
   }
 

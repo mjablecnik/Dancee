@@ -21,7 +21,6 @@ class EventListPage extends StatelessWidget {
             bloc: injector.use<EventListCubit>(),
             builder: (context, state) {
               return state.when(
-                init: () => Text("Eventy se načítají"),
                 loading: () => Text("Eventy se načítají"),
                 failed: (e) => Text("Nastala chyba: $e"),
                 loaded: (events) {
@@ -33,7 +32,7 @@ class EventListPage extends StatelessWidget {
                         return EventCard(
                           width: double.infinity,
                           title: event.title,
-                          place: event.address.name,
+                          place: event.venue.name,
                           since: event.since,
                           until: event.until,
                           style: EventCardStyle(

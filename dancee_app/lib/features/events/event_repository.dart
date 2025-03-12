@@ -1,4 +1,4 @@
-import 'package:dancee_app/entities/address.dart';
+import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
 import 'package:vader_app/vader_app.dart';
 
@@ -21,7 +21,7 @@ class EventRepository extends Repository {
           title: "Vánoční party s Hanserem a Vilmou",
           description:
               """Srdečně vás zveme na komorní vánoční párty!\nPřijďte si užít pohodový večer s Hanserem a Vilmou v příjemné atmosféře baru  Maracas. Tato akce je nejen pro naše studenty z kurzů, ale i pro  všechny, kdo si chtějí s námi dát drink, popovídat, zatančit a naladit  se na vánoční pohodu.""",
-          address: Address(
+          venue: Venue(
             name: "Café Bar Maracas",
             street: "Nekázanka",
             number: "883/8",
@@ -59,7 +59,7 @@ DJs noci:
 Speciální nabídka:
 - Máte narozeniny tento měsíc? Vstup zdarma! 🎂
           """,
-          address: Address(
+          venue: Venue(
             name: "Tresor Club",
             street: "Vinohradská 25",
             number: "1067/25",
@@ -90,7 +90,7 @@ Speciální nabídka:
 Salsa + Bachata místnost: DJ Lusithano
 UrbanKiz + Zouk místnost: DJ PLAYLIST 😉 Playlist vytvořený ve spolupráci s učiteli UrbanKiz a Zouk a nadšenci z ČR (Míla Rabová, Radim Honcha, Lucia Kubašová, Jakub Bureš, Vališ Stojčev, Eva Hrnciarová a další).
           """,
-          address: Address(
+          venue: Venue(
             name: "Černá labuť Art & Event Gallery",
             street: "Na Poříčí",
             number: "1067/25",
@@ -117,7 +117,7 @@ Social Dance Practice
 Get ready to move, groove, and vibe with us! The right time has come! We’re turning up the heat with Caribbean beats and good vibes. 🤩
 From the passionate steps of Dominican Bachata to the lively energy of Merengue, the classic elegance of Son, the playful Cha-cha, and the romantic flow of Bolero—this is your chance to jump into the heart and soul of these iconic dances. PS: If you have any other ROOTS wishes, we’re happy to make them come true! 😉
           """,
-          address: Address(
+          venue: Venue(
             name: "Studio DanceDifferent",
             street: "Fügnerovo nám.",
             number: "5",
@@ -170,7 +170,7 @@ Workshops Schedule 💣💥
 We will also have our amazing International DJ Momolatino ready to play the bachata hits you love the most in the bachata room 🥳
 And of course, the great and only Dj Lole in the salsa room 🎵💥
           """,
-          address: Address(
+          venue: Venue(
             name: "Vavruška Dance School",
             street: "Karlovo nám.",
             number: "317/5",
@@ -201,7 +201,7 @@ https://www.facebook.com/kseniamotion
 https://www.facebook.com/DjLolePrague
 https://www.facebook.com/viktoriq.markova.7
           """,
-          address: Address(
+          venue: Venue(
             name: "Bowlers Karlín",
             street: "Sokolovská",
             number: "713/111c",
