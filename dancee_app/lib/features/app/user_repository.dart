@@ -1,23 +1,18 @@
+import 'package:uuid/uuid.dart';
 import 'package:vader_app/vader_app.dart';
 import 'package:dancee_app/entities/user.dart';
 
 class UserRepository extends Repository {
-  UserRepository({
-    required super.httpClient,
-    required super.storageClient,
-  });
+  UserRepository({required super.httpClient, required super.storageClient});
 
   Future<User> getLoggedUser() async {
-    final response = await httpClient.request(
-      path: '/auth/me',
-      method: HttpMethod.get,
-    );
+    final response = await httpClient.request(path: '/auth/me', method: HttpMethod.get);
     return User.fromJson(response.data);
   }
 
   Future<User> getUser(String userName) async {
     Future.delayed(const Duration(seconds: 1));
-    return User(firstName: "John", lastName: "Doe", userName: userName);
+    return User(id: Uuid().v7(), firstName: "John", lastName: "Doe", userName: userName);
   }
 
   Future<void> saveLoggedUser(User? user) {

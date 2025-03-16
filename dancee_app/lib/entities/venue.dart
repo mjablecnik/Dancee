@@ -1,4 +1,4 @@
-import 'package:vader_app/vader_app.dart';
+import 'package:vader_core/vader_core.dart';
 
 part 'venue.freezed.dart';
 
@@ -9,15 +9,18 @@ class Venue with _$Venue {
   const Venue._();
 
   const factory Venue({
-    @JsonKey(name: "Name") required String name,
-    @JsonKey(name: "Street") required String street,
-    @JsonKey(name: "Number") required String number,
-    @JsonKey(name: "Town") required String town,
-    @JsonKey(name: "Country") required String country,
-    @JsonKey(name: "PostalCode") required String postalCode,
+    @JsonKey(toJson: _toJsonUUID) required String id,
+    required String name,
+    required String street,
+    required String number,
+    required String town,
+    required String country,
+    @JsonKey(name: "postal_code") required String postalCode,
   }) = _Venue;
 
   String format() => "$street\u00A0$number, $postalCode\u00A0$town";
 
   factory Venue.fromJson(Map<String, Object?> json) => _$VenueFromJson(json);
 }
+
+String _toJsonUUID(String uuid) => 'u\'$uuid\'';

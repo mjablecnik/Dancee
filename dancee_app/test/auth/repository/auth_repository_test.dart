@@ -13,8 +13,9 @@ fakeData() {
 
   when(() => httpClient.setHeader('authorization', any())).thenReturn(true);
 
-  when(() => secureStorage.saveMap(StorageKey.loggedUser.name, User.fromJson(userLoginResponse.data).toJson()))
-      .thenAnswer((i) => Future.value());
+  when(
+    () => secureStorage.saveMap(StorageKey.loggedUser.name, User.fromJson(userLoginResponse.data).toJson()),
+  ).thenAnswer((i) => Future.value());
 
   when(
     () => httpClient.request(
@@ -25,10 +26,7 @@ fakeData() {
   ).thenAnswer((i) => Future.value(userLoginResponse));
 
   when(
-    () => httpClient.request(
-      path: '/auth/me',
-      method: HttpMethod.get,
-    ),
+    () => httpClient.request(path: '/auth/me', method: HttpMethod.get),
   ).thenAnswer((i) => Future.value(userDetailResponse));
 }
 
@@ -49,7 +47,7 @@ void main() {
 
   test('Get logged user', () async {
     final loggedUser = await authRepository.loggedUser();
-    final user = User(firstName: 'Emily', lastName: 'Johnson', userName: 'emilys', token: null);
+    final user = User(id: '1', firstName: 'Emily', lastName: 'Johnson', userName: 'emilys', token: null);
     expect(loggedUser, user);
   });
 }

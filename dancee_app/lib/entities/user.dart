@@ -1,4 +1,4 @@
-import 'package:vader_app/vader_app.dart';
+import 'package:vader_core/vader_core.dart';
 
 part 'user.freezed.dart';
 
@@ -9,10 +9,11 @@ class User extends VaderEntity with _$User {
   const User._();
 
   const factory User({
+    required String id,
     required String firstName,
     required String lastName,
     @JsonKey(name: "username") required String userName,
-    @JsonKey(name: "accessToken") String? token,
+    @JsonKey(name: "access_token") String? token,
   }) = _User;
 
   String? get fullName => "$firstName $lastName";

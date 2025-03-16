@@ -253,14 +253,6 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  dart_appwrite:
-    dependency: "direct main"
-    description:
-      name: dart_appwrite
-      sha256: "7cd44d77924acb1fc88eb3b3e0e3897f806798cca33ca85043fe7878030e3a5b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "13.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -886,6 +878,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  surrealdb:
+    dependency: "direct main"
+    description:
+      name: surrealdb
+      sha256: "327318b6f0fd251f672730fa1e79d4932617f402f0b80b496a65d3936b35d73e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   talker:
     dependency: transitive
     description:
@@ -1015,7 +1015,7 @@ packages:
     source: hosted
     version: "3.1.4"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       sha256: a5be9ef6618a7ac1e964353ef476418026db906c4facdedaa299b7a2e71690ff
@@ -1026,12 +1026,12 @@ packages:
     dependency: "direct main"
     description:
       name: vader_app
-      sha256: fbbdcf78d168ad5a1612be957ffd5a947814d5554b46ac505117ce870ce8c65a
+      sha256: "13ffee2f6428c0785d05beccbbd9588853bdc746d5ddb08dad2e50dc74294914"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.1"
   vader_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: vader_core
       sha256: d77be3d023f50be7f7de877ecc9ba37c4389245f1cfcef24edb0ad4b4355cb26

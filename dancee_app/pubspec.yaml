@@ -16,11 +16,13 @@ dependencies:
   dancee_design:
     path: ../dancee_design
 
-  vader_app: ^0.3.0
+  vader_app: ^0.3.1
+  vader_core: ^0.4.0
 
+  uuid: ^4.5.1
   slang: ^4.5.0
   slang_flutter: ^4.5.0
-  dart_appwrite: ^13.0.0
+  surrealdb: ^1.0.2
 
   cupertino_icons: ^1.0.8
 

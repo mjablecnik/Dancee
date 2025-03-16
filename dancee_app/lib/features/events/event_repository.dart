@@ -1,52 +1,14 @@
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
-import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vader_app/vader_app.dart';
 
 
 class EventRepository extends Repository {
   EventRepository({required super.httpClient, required super.storageClient});
 
-  Client client =
-      Client()
-          .setEndpoint('https://cloud.appwrite.io/v1') // Make sure your endpoint is accessible
-          .setProject('dancee') // Your project ID
-          .setKey(
-            'standard_f43f80673068e2a8bcc499a384297617d3baeff88fde1cc58fd8d323b126c0753a162c8253db7b92bbf574bd1e89086ac1b5fb252b6e563c32bd6a8797459815ce538445a30d1de9d36dd2ad7a3885d180ebaa7ba5a47d7b351bd320c8b514f66cab0432682a1b73ed748435a7a12eb11d4b403536381ee4fd6a4207a55f43b1',
-          )
-          .setSelfSigned(); // Use only on dev mode with a self-signed SSL cert
 
 
-  saveEvent(Event event) async {
-    final databases = Databases(client);
-    final data = event.toJson();
-    data.remove('id');
-    data.remove('EventPart');
-    print(data);
-    final result = await databases.createDocument(
-      databaseId: 'danceedb',
-      collectionId: 'event',
-      documentId: ID.unique(),
-      data: data,
-    );
-    print(result);
-  }
-
-  listVenues() async {
-    try {
-      final databases = Databases(client);
-      final documents = await databases.listDocuments(
-        databaseId: 'danceedb',
-        collectionId: 'venue',
-        queries: [Query.search('Name', 'Mar')],
-      );
-      for (var e in documents.documents) {
-        print(e.data);
-      }
-    } on AppwriteException catch (e) {
-      print(e);
-    }
-  }
 
   Future<List<Event>> getEvents() async {
     // final response = await httpClient.request(
@@ -56,11 +18,12 @@ class EventRepository extends Repository {
     // return [...response.data["events"].map((e) => Event.fromJson(e))];
     return Future.value([
       Event(
-        id: 1,
+        id: Uuid().v7(),
         title: "Vánoční party s Hanserem a Vilmou",
         description:
             """Srdečně vás zveme na komorní vánoční párty!\nPřijďte si užít pohodový večer s Hanserem a Vilmou v příjemné atmosféře baru  Maracas. Tato akce je nejen pro naše studenty z kurzů, ale i pro  všechny, kdo si chtějí s námi dát drink, popovídat, zatančit a naladit  se na vánoční pohodu.""",
         venue: Venue(
+          id: Uuid().v7(),
           name: "Café Bar Maracas",
           street: "Nekázanka",
           number: "883/8",
@@ -77,14 +40,14 @@ class EventRepository extends Repository {
           EventInfo(type: EventInfoType.url, key: "Odkaz", value: "https://fb.me/e/41aDcOTep"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
           EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
           EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
         ],
       ),
       Event(
-        id: 2,
+        id: Uuid().v7(),
         title: "Party at Tresor",
         description: """
 Začněme nový rok tancem a zábavou! 🎶
@@ -103,6 +66,7 @@ Speciální nabídka:
 - Máte narozeniny tento měsíc? Vstup zdarma! 🎂
           """,
         venue: Venue(
+          id: Uuid().v7(),
           name: "Tresor Club",
           street: "Vinohradská 25",
           number: "1067/25",
@@ -118,14 +82,14 @@ Speciální nabídka:
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/5jGIhoRKE"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
           EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
           EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
         ],
       ),
       Event(
-        id: 3,
+        id: Uuid().v7(),
         title: "Latin party in Černá Labuť",
         description:
             """Připravte se na další taneční party na Černá Labuť Party Edition! Připojte se k nám v neděli 23. února na noc plnou přátel, skvělé hudby a DJ Lusithana. Nenechte si to ujít!
@@ -139,6 +103,7 @@ Salsa + Bachata místnost: DJ Lusithano
 UrbanKiz + Zouk místnost: DJ PLAYLIST 😉 Playlist vytvořený ve spolupráci s učiteli UrbanKiz a Zouk a nadšenci z ČR (Míla Rabová, Radim Honcha, Lucia Kubašová, Jakub Bureš, Vališ Stojčev, Eva Hrnciarová a další).
           """,
         venue: Venue(
+          id: Uuid().v7(),
           name: "Černá labuť Art & Event Gallery",
           street: "Na Poříčí",
           number: "1067/25",
@@ -155,14 +120,14 @@ UrbanKiz + Zouk místnost: DJ PLAYLIST 😉 Playlist vytvořený ve spolupráci 
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/7Hv1DaKDT"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
           EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
           EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
         ],
       ),
       Event(
-        id: 4,
+        id: Uuid().v7(),
         title: "Latin party in Černá Labuť",
         description: """
 Social Dance Practice
@@ -170,6 +135,7 @@ Get ready to move, groove, and vibe with us! The right time has come! We’re tu
 From the passionate steps of Dominican Bachata to the lively energy of Merengue, the classic elegance of Son, the playful Cha-cha, and the romantic flow of Bolero—this is your chance to jump into the heart and soul of these iconic dances. PS: If you have any other ROOTS wishes, we’re happy to make them come true! 😉
           """,
         venue: Venue(
+          id: Uuid().v7(),
           name: "Studio DanceDifferent",
           street: "Fügnerovo nám.",
           number: "5",
@@ -185,14 +151,14 @@ From the passionate steps of Dominican Bachata to the lively energy of Merengue,
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/5hp2XV6GA"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
           EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
           EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
         ],
       ),
       Event(
-        id: 6,
+        id: Uuid().v7(),
         title: "UNITED Bachata Party",
         description: """
 Join us for the first UNITED Bachata Party in 2025 on International Singles Awareness Day 💘 15.02.2025
@@ -227,6 +193,7 @@ We will also have our amazing International DJ Momolatino ready to play the bach
 And of course, the great and only Dj Lole in the salsa room 🎵💥
           """,
         venue: Venue(
+          id: Uuid().v7(),
           name: "Vavruška Dance School",
           street: "Karlovo nám.",
           number: "317/5",
@@ -241,7 +208,7 @@ And of course, the great and only Dj Lole in the salsa room 🎵💥
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/2I1kgITdO"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
           EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
           EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
@@ -249,7 +216,7 @@ And of course, the great and only Dj Lole in the salsa room 🎵💥
       ),
 
       Event(
-        id: 7,
+        id: Uuid().v7(),
         title: "100% Salsa party",
         description: """
 Program ✨
@@ -262,6 +229,7 @@ https://www.facebook.com/DjLolePrague
 https://www.facebook.com/viktoriq.markova.7
           """,
         venue: Venue(
+          id: Uuid().v7(),
           name: "Bowlers Karlín",
           street: "Sokolovská",
           number: "713/111c",
@@ -278,7 +246,7 @@ https://www.facebook.com/viktoriq.markova.7
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/5oPUd3GER"),
         ],
         organizer: "Salsaholics",
-        part: [
+        parts: [
           EventPart(name: 'Workshop123', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
         ],
       ),
