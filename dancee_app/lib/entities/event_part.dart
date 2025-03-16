@@ -9,11 +9,11 @@ class EventPart extends VaderEntity with _$EventPart {
   const EventPart._();
 
   const factory EventPart({
-    required String name,
-    required EventPartType type,
-    required List<String> dances,
-    required List<String> lectors,
-    required List<String> djs,
+    @JsonKey(name: "Name") required String name,
+    @JsonKey(name: "Type") required EventPartType type,
+    @JsonKey(name: "DanceStyle") required List<String> dances,
+    @JsonKey(name: "Lectors") required List<String> lectors,
+    @JsonKey(name: "DJs") required List<String> djs,
   }) = _EventPart;
 
   factory EventPart.fromJson(Map<String, Object?> json) => _$EventPartFromJson(json);

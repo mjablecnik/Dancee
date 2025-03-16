@@ -1,3 +1,8 @@
+import 'package:dancee_app/entities/event.dart';
+import 'package:dancee_app/entities/event_info.dart';
+import 'package:dancee_app/entities/event_part.dart';
+import 'package:dancee_app/entities/venue.dart';
+import 'package:dancee_app/features/events/event_repository.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_app/features/events/logic/event_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
@@ -5,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:vader_app/vader_app.dart';
 import 'package:dancee_app/i18n/translations.g.dart';
 
-import '../components/button_section.dart';
+import '../sections/action_section.dart';
 
 class EventListPage extends StatelessWidget {
   const EventListPage({super.key});
@@ -16,7 +21,7 @@ class EventListPage extends StatelessWidget {
       title: i18n.events.title,
       child: Column(
         children: [
-          ButtonSection(),
+          ActionSection(),
           BlocBuilder<EventListCubit, EventListState>(
             bloc: injector.use<EventListCubit>(),
             builder: (context, state) {
@@ -42,7 +47,8 @@ class EventListPage extends StatelessWidget {
                           ),
                           tooMuchInfo: event.tags.length >= 3 && event.title.length > 24,
                           chips: event.tags.map((t) => Chip(text: t)).toList(),
-                          onTap: () {
+                          onTap: () async {
+                            await injector.use<EventRepository>().saveEvent(event1);
                             print("TODO: Go to Event detail page");
                           },
                         );
@@ -58,3 +64,31 @@ class EventListPage extends StatelessWidget {
     );
   }
 }
+final event1 = Event(
+  id: 1,
+  title: "Vánoční party s Hanserem a Vilmou",
+  description:
+  """Srdečně vás zveme na komorní vánoční párty!\nPřijďte si užít pohodový večer s Hanserem a Vilmou v příjemné atmosféře baru  Maracas. Tato akce je nejen pro naše studenty z kurzů, ale i pro  všechny, kdo si chtějí s námi dát drink, popovídat, zatančit a naladit  se na vánoční pohodu.""",
+  venue: Venue(
+    name: "Café Bar Maracas124",
+    street: "Nekázanka",
+    number: "883/89",
+    postalCode: "110 00",
+    town: "Praha",
+    country: "CZ",
+  ),
+  since: DateTime(2025, 12, 10, 20, 0, 0),
+  until: DateTime(2025, 12, 11, 1, 0, 0),
+  info: [
+    EventInfo(type: EventInfoType.text, key: "Vstup", value: "Zdarma"),
+    EventInfo(type: EventInfoType.text, key: "Šatna", value: "Zdarma"),
+    EventInfo(type: EventInfoType.url, key: "Klub", value: "www.facebook.com/cafebar.maracas"),
+    EventInfo(type: EventInfoType.url, key: "Odkaz", value: "https://fb.me/e/41aDcOTep"),
+  ],
+  organizer: "Salsaholics",
+  part: [
+    EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
+    EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
+    EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+  ],
+);

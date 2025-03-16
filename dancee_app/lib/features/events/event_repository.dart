@@ -1,12 +1,54 @@
 import 'package:dancee_app/entities/event_part.dart';
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
+import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:vader_app/vader_app.dart';
 
 import '../../entities/event_info.dart';
 
 class EventRepository extends Repository {
   EventRepository({required super.httpClient, required super.storageClient});
+
+  Client client =
+      Client()
+          .setEndpoint('https://cloud.appwrite.io/v1') // Make sure your endpoint is accessible
+          .setProject('dancee') // Your project ID
+          .setKey(
+            'standard_f43f80673068e2a8bcc499a384297617d3baeff88fde1cc58fd8d323b126c0753a162c8253db7b92bbf574bd1e89086ac1b5fb252b6e563c32bd6a8797459815ce538445a30d1de9d36dd2ad7a3885d180ebaa7ba5a47d7b351bd320c8b514f66cab0432682a1b73ed748435a7a12eb11d4b403536381ee4fd6a4207a55f43b1',
+          )
+          .setSelfSigned(); // Use only on dev mode with a self-signed SSL cert
+
+
+  saveEvent(Event event) async {
+    final databases = Databases(client);
+    final data = event.toJson();
+    data.remove('id');
+    data.remove('EventPart');
+    print(data);
+    final result = await databases.createDocument(
+      databaseId: 'danceedb',
+      collectionId: 'event',
+      documentId: ID.unique(),
+      data: data,
+    );
+    print(result);
+  }
+
+  listVenues() async {
+    try {
+      final databases = Databases(client);
+      final documents = await databases.listDocuments(
+        databaseId: 'danceedb',
+        collectionId: 'venue',
+        queries: [Query.search('Name', 'Mar')],
+      );
+      for (var e in documents.documents) {
+        print(e.data);
+      }
+    } on AppwriteException catch (e) {
+      print(e);
+    }
+  }
 
   Future<List<Event>> getEvents() async {
     // final response = await httpClient.request(

@@ -14,14 +14,14 @@ class Event extends VaderEntity with _$Event {
 
   const factory Event({
     required int id,
-    required String title,
-    required String description,
-    required String organizer,
-    required Venue venue,
-    required DateTime since,
-    required DateTime until,
-    required List<EventInfo> info,
-    required List<EventPart> part,
+    @JsonKey(name: "Title") required String title,
+    @JsonKey(name: "Description") required String description,
+    @JsonKey(name: "Organizer") required String organizer,
+    @JsonKey(name: "Venue") required Venue venue,
+    @JsonKey(name: "StartDate") required DateTime since,
+    @JsonKey(name: "EndDate") required DateTime until,
+    @JsonKey(name: "EventInfo") required List<EventInfo> info,
+    @JsonKey(name: "EventPart") required List<EventPart> part,
   }) = _Event;
 
   Set<String> get tags => part.fold({}, (e, r) => {...e, ...r.dances});

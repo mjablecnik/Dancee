@@ -9,9 +9,9 @@ class EventInfo extends VaderEntity with _$EventInfo {
   const EventInfo._();
 
   const factory EventInfo({
-    required EventInfoType type,
-    required String key,
-    required String value,
+    @JsonKey(name: "Type") required EventInfoType type,
+    @JsonKey(name: "Key") required String key,
+    @JsonKey(name: "Value") required String value,
   }) = _EventInfo;
 
   factory EventInfo.fromJson(Map<String, Object?> json) => _$EventInfoFromJson(json);

@@ -2,8 +2,8 @@ import 'package:dancee_design/dancee_design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' show Icons;
 
-class ButtonSection extends StatelessWidget {
-  const ButtonSection({super.key});
+class ActionSection extends StatelessWidget {
+  const ActionSection({super.key});
 
   @override
   Widget build(BuildContext context) {

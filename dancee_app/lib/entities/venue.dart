@@ -9,12 +9,12 @@ class Venue with _$Venue {
   const Venue._();
 
   const factory Venue({
-    required String name,
-    required String street,
-    required String number,
-    required String town,
-    required String country,
-    required String postalCode,
+    @JsonKey(name: "Name") required String name,
+    @JsonKey(name: "Street") required String street,
+    @JsonKey(name: "Number") required String number,
+    @JsonKey(name: "Town") required String town,
+    @JsonKey(name: "Country") required String country,
+    @JsonKey(name: "PostalCode") required String postalCode,
   }) = _Venue;
 
   String format() => "$street\u00A0$number, $postalCode\u00A0$town";
