@@ -2,8 +2,6 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:flutter/widgets.dart';
 
 import 'entities/event.dart';
-import 'entities/event_info.dart';
-import 'entities/event_part.dart';
 import 'entities/venue.dart';
 
 final event = Event(

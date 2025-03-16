@@ -1,6 +1,4 @@
 import 'package:dancee_app/entities/event.dart';
-import 'package:dancee_app/entities/event_info.dart';
-import 'package:dancee_app/entities/event_part.dart';
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/features/events/event_repository.dart';
 import 'package:dancee_design/dancee_design.dart';

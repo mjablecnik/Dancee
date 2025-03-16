@@ -1,9 +1,6 @@
 import 'package:dancee_app/entities/venue.dart';
 import 'package:vader_app/vader_app.dart';
 
-import 'event_info.dart';
-import 'event_part.dart';
-
 part 'event.freezed.dart';
 
 part 'event.g.dart';
@@ -28,3 +25,35 @@ class Event extends VaderEntity with _$Event {
 
   factory Event.fromJson(Map<String, Object?> json) => _$EventFromJson(json);
 }
+
+@freezed
+class EventInfo extends VaderEntity with _$EventInfo {
+  const EventInfo._();
+
+  const factory EventInfo({
+    @JsonKey(name: "Type") required EventInfoType type,
+    @JsonKey(name: "Key") required String key,
+    @JsonKey(name: "Value") required String value,
+  }) = _EventInfo;
+
+  factory EventInfo.fromJson(Map<String, Object?> json) => _$EventInfoFromJson(json);
+}
+
+enum EventInfoType { text, url, price }
+
+@freezed
+class EventPart extends VaderEntity with _$EventPart {
+  const EventPart._();
+
+  const factory EventPart({
+    @JsonKey(name: "Name") required String name,
+    @JsonKey(name: "Type") required EventPartType type,
+    @JsonKey(name: "DanceStyle") required List<String> dances,
+    @JsonKey(name: "Lectors") required List<String> lectors,
+    @JsonKey(name: "DJs") required List<String> djs,
+  }) = _EventPart;
+
+  factory EventPart.fromJson(Map<String, Object?> json) => _$EventPartFromJson(json);
+}
+
+enum EventPartType { party, workshop }

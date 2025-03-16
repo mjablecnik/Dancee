@@ -1,10 +1,8 @@
-import 'package:dancee_app/entities/event_part.dart';
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:vader_app/vader_app.dart';
 
-import '../../entities/event_info.dart';
 
 class EventRepository extends Repository {
   EventRepository({required super.httpClient, required super.storageClient});
