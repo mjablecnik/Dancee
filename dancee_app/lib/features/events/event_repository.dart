@@ -1,13 +1,18 @@
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
+import 'package:surrealdb/surrealdb.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vader_app/vader_app.dart';
 
 
-class EventRepository extends Repository {
-  EventRepository({required super.httpClient, required super.storageClient});
+class EventRepository {
+  EventRepository({required this.db});
 
+  final SurrealDB db;
 
+  Future getAllEvents() async {
+    var result = await db.query("SELECT *, venues.* FROM events");
+    print(result);
+  }
 
 
   Future<List<Event>> getEvents() async {

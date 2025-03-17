@@ -47,7 +47,7 @@ class EventListPage extends StatelessWidget {
                           tooMuchInfo: event.tags.length >= 3 && event.title.length > 24,
                           chips: event.tags.map((t) => Chip(text: t)).toList(),
                           onTap: () async {
-                            //await injector.use<EventRepository>().saveEvent(event1);
+                            await injector.use<EventRepository>().getAllEvents();
                             print("TODO: Go to Event detail page");
                           },
                         );

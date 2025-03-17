@@ -1,5 +1,7 @@
+import 'package:dancee_app/features/app/clients/surrealdb_client.dart';
 import 'package:dancee_app/features/app/pages/initial_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:surrealdb/surrealdb.dart';
 import 'package:vader_app/vader_app.dart';
 
 class AppModule extends VaderModule {
@@ -8,9 +10,9 @@ class AppModule extends VaderModule {
 
   @override
   Injector? get services {
-    return Injector()
-      ..addInstance(HttpClient(apiUrl: 'https://www.example.com/api/', enableLogs: true, preventLargeResponses: true))
-      ..addInstance(StorageClient());
+    final injector = Injector();
+    injector.addLazyInstance<SurrealDB>(SurrealDbClient.init());
+    return injector;
   }
 }
 
@@ -25,7 +27,5 @@ enum AppRoutes {
 
   get path => '$routePath/$name';
 
-  static List<GoRoute> get routes => [
-    Routes.route(routePath, AppRoutes.initial._page),
-  ];
+  static List<GoRoute> get routes => [Routes.route(routePath, AppRoutes.initial._page)];
 }

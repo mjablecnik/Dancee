@@ -1026,18 +1026,18 @@ packages:
     dependency: "direct main"
     description:
       name: vader_app
-      sha256: "13ffee2f6428c0785d05beccbbd9588853bdc746d5ddb08dad2e50dc74294914"
+      sha256: aab292947615763cfa2c26478428fc3097386db5635cafeb25f22e515d66506b
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.2"
   vader_core:
     dependency: "direct main"
     description:
       name: vader_core
-      sha256: d77be3d023f50be7f7de877ecc9ba37c4389245f1cfcef24edb0ad4b4355cb26
+      sha256: c6a3bce474ddef2e43c238da0dca6a2ff12513de27722a8e003aba375c5a119a
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.1"
   vader_design:
     dependency: transitive
     description:
