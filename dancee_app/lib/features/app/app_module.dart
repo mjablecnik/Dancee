@@ -1,3 +1,4 @@
+import 'package:dancee_app/config.dart';
 import 'package:dancee_app/features/app/clients/surrealdb_client.dart';
 import 'package:dancee_app/features/app/pages/initial_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,9 @@ class AppModule extends VaderModule {
   @override
   Injector? get services {
     final injector = Injector();
-    injector.addLazyInstance<SurrealDB>(SurrealDbClient.init());
+    final appConfig = AppConfig();
+    injector.addInstance(appConfig);
+    injector.addLazyInstance<SurrealDB>(SurrealDbClient.init(appConfig.surrealDb));
     return injector;
   }
 }

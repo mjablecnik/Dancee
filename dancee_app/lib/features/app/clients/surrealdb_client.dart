@@ -1,15 +1,16 @@
+import 'package:dancee_app/config.dart';
 import 'package:surrealdb/surrealdb.dart';
 
 class SurrealDbClient {
-  static Future<SurrealDB> init() async {
-    final db = SurrealDB('wss://dancee-06apuo0fo5top8llq2otkquju4.aws-euw1.surreal.cloud/rpc');
+  static Future<SurrealDB> init(SurrealDbConfig config) async {
+    final db = SurrealDB(config.address);
     db.connect();
     await db.wait();
 
-    final token = await db.signin(user: 'manager', pass: 'I7gN4wEWKvl3');
+    final token = await db.signin(user: config.user, pass: config.password);
     await db.authenticate(token);
 
-    await db.use('Development', 'Dancee');
+    await db.use(config.namespace, config.database);
     return db;
   }
 }

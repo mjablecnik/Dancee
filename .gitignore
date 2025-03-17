@@ -45,3 +45,4 @@ settings.dart
 .fvm/
 node_modules/
 
+config.dart
