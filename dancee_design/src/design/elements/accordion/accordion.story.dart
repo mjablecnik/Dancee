@@ -26,19 +26,19 @@ accordionStory(BuildContext context) {
     children: [
       Accordion(
         title: 'Bachata Dominicana Workshop',
-        text: 'Open Level (bez úplných začátečníků—musíte znát základní kroky bachaty, základní otočky a základní změny směru).',
+        content: 'Open Level (bez úplných začátečníků—musíte znát základní kroky bachaty, základní otočky a základní změny směru).',
       ),
       Accordion(
         title: 'UrbanKiz Workshop',
-        text: 'Open Level (bez úplných začátečníků—musíte znát základní kroky a saidu).',
+        content: 'Open Level (bez úplných začátečníků—musíte znát základní kroky a saidu).',
       ),
       Accordion(
         title: 'Salsa + Bachata party',
-        text: 'Žádné informace',
+        content: 'Žádné informace',
       ),
       Accordion(
         title: 'UrbanKiz + Zouk party',
-        text: 'Žádné informace',
+        content: 'Žádné informace',
       ),
     ],
   );

@@ -2,11 +2,23 @@ import 'package:flutter/material.dart';
 import 'accordion.style.dart';
 
 class Accordion extends StatefulWidget {
-  const Accordion({super.key, required this.title, required this.text, this.isOpen = false, this.style});
+  const Accordion({
+    super.key,
+    required this.title,
+    required this.content,
+    this.isOpen = false,
+    this.openingDuration = const Duration(milliseconds: 250),
+    this.header,
+    this.body,
+    this.style,
+  });
 
   final String title;
-  final String text;
+  final String content;
   final bool isOpen;
+  final Duration openingDuration;
+  final Widget? header;
+  final Widget? body;
   final AccordionStyle? style;
 
   @override
@@ -33,7 +45,7 @@ class _AccordionTileState extends State<Accordion> {
 
     return AnimatedCrossFade(
       crossFadeState: isOpen ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-      duration: const Duration(milliseconds: 250),
+      duration: widget.openingDuration,
       firstChild: header,
       secondChild: Column(
         mainAxisSize: MainAxisSize.min,
@@ -44,10 +56,7 @@ class _AccordionTileState extends State<Accordion> {
             width: double.infinity,
             padding: currentStyle.bodyPadding,
             color: currentStyle.bodyColor,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text(widget.text, style: currentStyle.bodyTextStyle)],
-            ),
+            child: widget.body ?? Text(widget.content, style: currentStyle.bodyTextStyle),
           ),
         ],
       ),
@@ -74,7 +83,7 @@ class _AccordionHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(widget.title, style: currentStyle.headerTextStyle),
+          widget.header ?? Text(widget.title, style: currentStyle.headerTextStyle),
           Icon(
             isOpen ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined,
             color: currentStyle.iconColor,
