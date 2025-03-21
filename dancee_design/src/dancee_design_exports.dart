@@ -8,6 +8,8 @@ export 'design/elements/buttons/link_button/link_button.dart';
 export 'design/elements/buttons/link_button/link_button.style.dart';
 export 'design/elements/buttons/primary_button/primary_button.dart';
 export 'design/elements/buttons/primary_button/primary_button.style.dart';
+export 'design/elements/accordion/accordion.style.dart';
+export 'design/elements/accordion/accordion.dart';
 export 'design/elements/chip/chip.style.dart';
 export 'design/elements/chip/chip.dart';
 export 'design/layouts/page_layout/page_layout.style.dart';
