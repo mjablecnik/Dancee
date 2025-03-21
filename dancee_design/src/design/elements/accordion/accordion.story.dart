@@ -17,8 +17,6 @@ String textKnobOptions(BuildContext context) => context.knobs.options(
     const Option(label: "Long text", value: "Vítejte zde na našich stránkách."),
   ],
 );
-
-onTap() => debugPrint("Test click.");
 //endregion
 
 
@@ -27,19 +25,20 @@ accordionStory(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Accordion(
-        title: 'Sekce 1',
-        text: 'Obsah Sekce 1',
-        onTap: onTap,
+        title: 'Bachata Dominicana Workshop',
+        text: 'Open Level (bez úplných začátečníků—musíte znát základní kroky bachaty, základní otočky a základní změny směru).',
       ),
       Accordion(
-        title: 'Sekce 2',
-        text: 'Obsah Sekce 2',
-        onTap: onTap,
+        title: 'UrbanKiz Workshop',
+        text: 'Open Level (bez úplných začátečníků—musíte znát základní kroky a saidu).',
       ),
       Accordion(
-        title: 'Sekce 3',
-        text: 'Obsah Sekce 3',
-        onTap: onTap,
+        title: 'Salsa + Bachata party',
+        text: 'Žádné informace',
+      ),
+      Accordion(
+        title: 'UrbanKiz + Zouk party',
+        text: 'Žádné informace',
       ),
     ],
   );
