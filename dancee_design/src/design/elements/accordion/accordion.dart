@@ -4,8 +4,8 @@ import 'accordion.style.dart';
 class Accordion extends StatefulWidget {
   const Accordion({
     super.key,
-    required this.title,
-    required this.content,
+    this.title,
+    this.content,
     this.isOpen = false,
     this.openingDuration = const Duration(milliseconds: 250),
     this.header,
@@ -13,8 +13,8 @@ class Accordion extends StatefulWidget {
     this.style,
   });
 
-  final String title;
-  final String content;
+  final String? title;
+  final String? content;
   final bool isOpen;
   final Duration openingDuration;
   final Widget? header;
@@ -56,7 +56,7 @@ class _AccordionTileState extends State<Accordion> {
             width: double.infinity,
             padding: currentStyle.bodyPadding,
             color: currentStyle.bodyColor,
-            child: widget.body ?? Text(widget.content, style: currentStyle.bodyTextStyle),
+            child: widget.body ?? Text(widget.content!, style: currentStyle.bodyTextStyle),
           ),
         ],
       ),
@@ -83,7 +83,7 @@ class _AccordionHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          widget.header ?? Text(widget.title, style: currentStyle.headerTextStyle),
+          widget.header ?? Text(widget.title!, style: currentStyle.headerTextStyle),
           Icon(
             isOpen ? Icons.keyboard_arrow_up_outlined : Icons.keyboard_arrow_down_outlined,
             color: currentStyle.iconColor,
