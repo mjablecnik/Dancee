@@ -1,4 +1,5 @@
 version: '3'
+# Manual is here: https://taskfile.dev/usage/
 
 interval: 2000ms
 
@@ -19,6 +20,8 @@ tasks:
   build-design:
     cmd: "./bin/design_builder -s src -o lib -p dancee_design"
     desc: "Generate Dart design files in lib folder"
+    sources:
+      - 'src/**/*.dart'
 
   run-build-runner:
     cmd: "fvm dart run build_runner build --delete-conflicting-outputs"
