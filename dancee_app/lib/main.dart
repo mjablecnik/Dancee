@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vader_app/vader_app.dart';
 
+import 'features/app/pages/initial_page.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   logger.setObserver(CrashlyticsLoggerObserver());
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       modules: [AppModule(), EventModule()],
       theme: ExampleTheme(),
       isDebug: false,
-      entrypoint: AppRoutes.initial.path,
+      entrypoint: InitialRoute().location,
       localization: Localization(
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
