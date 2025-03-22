@@ -1,5 +1,7 @@
 export 'design/components/chip_list/chip_list.style.dart';
 export 'design/components/chip_list/chip_list.dart';
+export 'design/components/event_detail_accordion/event_detail_accordion.dart';
+export 'design/components/event_detail_accordion/event_detail_accordion.style.dart';
 export 'design/components/event_card/event_card.style.dart';
 export 'design/components/event_card/event_card.dart';
 export 'design/elements/buttons/outline_button/outline_button.style.dart';
