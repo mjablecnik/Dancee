@@ -23,9 +23,29 @@ class EventDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      title: event.title,
-      child: Center(
-        child: Text(event.description),
+      title: "Detail události",
+      child: Column(
+        spacing: 20,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height - 140,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: 20,
+                  children: [
+                    Text(event.title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, fontFamily: 'Inter')),
+                    Text(event.description),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          PrimaryButton(text: 'Zúčastním se', size: ButtonSize.large),
+        ],
       ),
     );
   }

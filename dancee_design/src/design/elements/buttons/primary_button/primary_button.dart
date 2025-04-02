@@ -40,7 +40,7 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton.icon(
         iconAlignment: leadingIcon ? IconAlignment.start : IconAlignment.end,
         icon: buttonIcon,
-        onPressed: onTap,
+        onPressed: onTap ?? () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: currentStyle.color,
           foregroundColor: currentStyle.textStyle.color,

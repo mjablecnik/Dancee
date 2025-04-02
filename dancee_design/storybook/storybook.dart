@@ -9,8 +9,8 @@ Storybook storybook([List<Story>? stories]) {
     wrapperBuilder: (context, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ExampleTheme().light,
-        darkTheme: ExampleTheme().dark,
+        theme: DanceeTheme().light,
+        darkTheme: DanceeTheme().dark,
         builder: defaultMediaQueryBuilder,
         home: Scaffold(
           body: Center(

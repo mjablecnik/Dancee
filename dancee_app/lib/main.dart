@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return VaderApp(
       modules: [AppModule(), EventModule()],
-      theme: ExampleTheme(),
+      theme: DanceeTheme(),
       isDebug: false,
       entrypoint: InitialRoute().location,
       localization: Localization(
