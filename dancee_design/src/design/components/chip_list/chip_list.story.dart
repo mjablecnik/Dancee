@@ -42,7 +42,7 @@ chipListStory(BuildContext context) {
         style: ChipListStyle(
           decoration: BoxDecoration(
             border: Border.all(
-              color: DesignColors.grey400.withAlpha(30),
+              color: AppColors.grey400.withAlpha(30),
             ),
           ),
         ),
@@ -53,7 +53,7 @@ chipListStory(BuildContext context) {
         padding: EdgeInsets.symmetric(vertical: 8),
         style: ChipListStyle(
           decoration: BoxDecoration(
-            color: DesignColors.blue200,
+            color: AppColors.blue200,
           ),
         ),
       ),

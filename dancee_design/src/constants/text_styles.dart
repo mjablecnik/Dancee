@@ -38,7 +38,7 @@ class TextStyles {
     fontWeight: FontWeight.normal,
     fontSize: 11.5,
     letterSpacing: 0.1,
-    color: DesignColors.grey400,
+    color: AppColors.grey400,
   );
 
   static const TextStyle smallLabelTextStyle = TextStyle(

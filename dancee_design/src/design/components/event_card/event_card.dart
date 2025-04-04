@@ -35,7 +35,7 @@ class EventCard extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             right: BorderSide(
-              color: DesignColors.grey400.withAlpha(50),
+              color: AppColors.grey400.withAlpha(50),
             ),
           ),
         ),
@@ -66,7 +66,7 @@ class EventCard extends StatelessWidget {
               style: TextStyle(
                 fontFamily: AppFonts.inter,
                 fontWeight: FontWeight.w400,
-                color: DesignColors.grey400,
+                color: AppColors.grey400,
                 fontSize: 11,
               ),
             ),
@@ -75,7 +75,7 @@ class EventCard extends StatelessWidget {
               style: TextStyle(
                 fontFamily: AppFonts.inter,
                 fontWeight: FontWeight.w400,
-                color: DesignColors.grey400,
+                color: AppColors.grey400,
                 fontSize: 11,
               ),
             ),
@@ -98,7 +98,7 @@ class EventCard extends StatelessWidget {
             style: TextStyle(
               fontFamily: AppFonts.inter,
               fontWeight: FontWeight.w400,
-              color: DesignColors.grey400,
+              color: AppColors.grey400,
               fontSize: 12,
             ),
             maxLines: 2,
@@ -158,8 +158,8 @@ class EventCard extends StatelessWidget {
             style: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.copyWith(
               iconSize: 19,
               textSize: 13,
-              iconColor: DesignColors.grey400.withAlpha(200),
-              textColor: DesignColors.grey400,
+              iconColor: AppColors.grey400.withAlpha(200),
+              textColor: AppColors.grey400,
               fontWeight: FontWeight.w400,
             ),
           ),

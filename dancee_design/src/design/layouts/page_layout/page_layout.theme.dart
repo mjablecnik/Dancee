@@ -3,8 +3,8 @@ import '../../../dancee_design_exports.dart';
 class PageLayoutTheme {
   static final light = PageLayoutStyle(
     toolbarHeight: 48,
-    backgroundColor: DesignColors.white,
-    headerColor: DesignColors.white,
+    backgroundColor: AppColors.white,
+    headerColor: AppColors.white,
   );
 
   static final dark = light;

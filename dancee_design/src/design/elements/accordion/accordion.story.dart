@@ -69,7 +69,7 @@ accordionCustomStory(BuildContext context) {
           children: [
             Text(
               'Open Level (bez úplných začátečníků—musíte znát základní kroky bachaty, základní otočky a základní změny směru).',
-              style: TextStyle(fontSize: 11.0, color: DesignColors.grey400),
+              style: TextStyle(fontSize: 11.0, color: AppColors.grey400),
             ),
             Column(
               spacing: 6,
@@ -78,7 +78,7 @@ accordionCustomStory(BuildContext context) {
                   spacing: 12,
                   children: [
                     Text('Lektoři:', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600)),
-                    Text('Tom a Jolly', style: TextStyle(fontSize: 12.0, color: DesignColors.grey400)),
+                    Text('Tom a Jolly', style: TextStyle(fontSize: 12.0, color: AppColors.grey400)),
                   ],
                 ),
                 Row(
@@ -87,7 +87,7 @@ accordionCustomStory(BuildContext context) {
                     Text('Adresa:', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600)),
                     Text(
                       'Nekázanka 883/8,\n110 00 Praha, Česko',
-                      style: TextStyle(fontSize: 12.0, color: DesignColors.grey400),
+                      style: TextStyle(fontSize: 12.0, color: AppColors.grey400),
                     ),
                   ],
                 ),

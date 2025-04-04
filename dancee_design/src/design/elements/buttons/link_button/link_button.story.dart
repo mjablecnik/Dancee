@@ -49,8 +49,8 @@ linkButtonStory(BuildContext context) {
         style: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.copyWith(
           iconSize: 20,
           textSize: 13,
-          iconColor: DesignColors.black,
-          textColor: DesignColors.grey400,
+          iconColor: AppColors.black,
+          textColor: AppColors.grey400,
           fontWeight: FontWeight.w400,
         ),
       ),

@@ -45,10 +45,10 @@ outlineButtonStory(BuildContext context) {
         leadingIcon: iconPositionKnob(context),
         size: ButtonSize.large,
         style: OutlineButtonStyle(
-          primaryColor: DesignColors.red500,
-          secondaryColor: DesignColors.red100,
-          iconColor: DesignColors.red500,
-          textColor: DesignColors.red500,
+          primaryColor: AppColors.red500,
+          secondaryColor: AppColors.red100,
+          iconColor: AppColors.red500,
+          textColor: AppColors.red500,
         ),
       ),
       OutlineButton(

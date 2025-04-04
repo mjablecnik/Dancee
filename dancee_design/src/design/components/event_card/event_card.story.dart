@@ -33,7 +33,7 @@ eventCardStory(BuildContext context) {
           onTap: onTap,
           style: EventCardStyle(
             decoration: BoxDecoration(
-              color: DesignColors.white,
+              color: AppColors.white,
             ),
           ),
           tooMuchInfo: true,
@@ -64,7 +64,7 @@ eventCardListStory(BuildContext context) {
             onTap: onTap,
             style: EventCardStyle(
               decoration: BoxDecoration(
-                color: DesignColors.white,
+                color: AppColors.white,
               ),
             ),
             tooMuchInfo: true,
@@ -93,7 +93,7 @@ eventCardListStory(BuildContext context) {
             onTap: onTap,
             style: EventCardStyle(
               decoration: BoxDecoration(
-                color: DesignColors.white,
+                color: AppColors.white,
               ),
             ),
           ),

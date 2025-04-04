@@ -10,7 +10,7 @@ class ActionSection extends StatelessWidget {
     return Container(
       height: 42,
       decoration: BoxDecoration(
-        border: Border.symmetric(horizontal: BorderSide(color: DesignColors.grey400.withAlpha(25))),
+        border: Border.symmetric(horizontal: BorderSide(color: AppColors.grey400.withAlpha(25))),
       ),
       child: Row(
         children: [

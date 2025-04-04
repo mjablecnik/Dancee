@@ -3,10 +3,10 @@ import '../../../../dancee_design_exports.dart';
 
 class OutlineButtonTheme {
   static final light = OutlineButtonStyle(
-    primaryColor: DesignColors.blue600,
-    secondaryColor: DesignColors.blue100,
-    iconColor: DesignColors.blue700,
-    textColor: DesignColors.blue700,
+    primaryColor: AppColors.blue600,
+    secondaryColor: AppColors.blue100,
+    iconColor: AppColors.blue700,
+    textColor: AppColors.blue700,
   );
 
   static final dark = light;

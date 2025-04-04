@@ -24,7 +24,7 @@ class PageLayout extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 1,
-        shadowColor: DesignColors.grey500,
+        shadowColor: AppColors.grey500,
         toolbarHeight: currentStyle.toolbarHeight,
         backgroundColor: currentStyle.headerColor,
         leading: backButton(context),

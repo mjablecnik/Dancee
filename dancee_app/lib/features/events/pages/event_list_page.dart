@@ -48,7 +48,7 @@ class EventListPage extends StatelessWidget {
                           until: event.until,
                           style: EventCardStyle(
                             decoration: BoxDecoration(
-                              color: index % 2 == 0 ? DesignColors.white : DesignColors.blue200,
+                              color: index % 2 == 0 ? AppColors.white : AppColors.blue200,
                             ),
                           ),
                           tooMuchInfo: event.tags.length >= 3 && event.title.length > 24,

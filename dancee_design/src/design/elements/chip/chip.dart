@@ -14,7 +14,7 @@ class Chip extends StatelessWidget {
 
     return Badge(
       label: Text(text, style: currentStyle.textStyle),
-      backgroundColor: DesignColors.blue200,
+      backgroundColor: AppColors.blue200,
       textColor: currentStyle.textStyle.color,
       padding: EdgeInsets.symmetric(vertical: 2, horizontal: 12),
     );

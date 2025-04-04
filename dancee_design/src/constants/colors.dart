@@ -9,7 +9,7 @@ Name examples:
 - blue700
 - blue900
 */
-class DesignColors {
+class AppColors {
   // static const Color blue300 = Color(0xff39485C);
   // static const Color blue600 = Color(0xff202934);
   // static const Color blue900 = Color(0xff141A1F);

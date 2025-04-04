@@ -12,14 +12,14 @@ ThemeData get lightTheme => ThemeData(
   highlightColor: Colors.transparent,
 
   colorScheme: ColorScheme.light(
-    //primary: DesignColors.red500,
-    //border: DesignColors.blue600,
-    surface: DesignColors.grey200,
+    //primary: AppColors.red500,
+    //border: AppColors.blue600,
+    surface: AppColors.grey200,
   ),
   //textTheme: TextTheme(),
   appBarTheme: AppBarTheme(
-    color: DesignColors.white,
-    surfaceTintColor: DesignColors.white,
+    color: AppColors.white,
+    surfaceTintColor: AppColors.white,
   ),
   extensions: [lightDesignThemeExtension],
 );
