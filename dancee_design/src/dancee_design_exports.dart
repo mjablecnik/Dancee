@@ -14,6 +14,8 @@ export 'design/elements/accordion/accordion.style.dart';
 export 'design/elements/accordion/accordion.dart';
 export 'design/elements/chip/chip.style.dart';
 export 'design/elements/chip/chip.dart';
+export 'design/elements/label/label.dart';
+export 'design/elements/label/label.style.dart';
 export 'design/layouts/page_layout/page_layout.style.dart';
 export 'design/layouts/page_layout/page_layout.dart';
 export 'constants/assets.dart';
