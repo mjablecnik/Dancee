@@ -12,6 +12,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   logger.setObserver(CrashlyticsLoggerObserver());
 
+  AppIcons.pathPrefix = '../dancee_design/';
+
   runApp(TranslationProvider(child: MyApp()));
 }
 

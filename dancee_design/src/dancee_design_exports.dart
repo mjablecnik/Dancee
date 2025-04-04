@@ -16,6 +16,7 @@ export 'design/elements/chip/chip.style.dart';
 export 'design/elements/chip/chip.dart';
 export 'design/layouts/page_layout/page_layout.style.dart';
 export 'design/layouts/page_layout/page_layout.dart';
+export 'constants/assets.dart';
 export 'constants/colors.dart';
 export 'constants/utils.dart';
 export 'constants/text_styles.dart';

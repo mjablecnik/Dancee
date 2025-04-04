@@ -32,7 +32,7 @@ class PageLayout extends StatelessWidget {
           title,
           style: TextStyle(
             color: Colors.black,
-            fontFamily: FontFamily.inter,
+            fontFamily: AppFonts.inter,
             fontWeight: FontWeight.w500,
             fontSize: 18,
           ),
