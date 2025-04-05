@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 
 class LinkButtonTheme {
   static final light = LinkButtonStyle(
-    textColor: AppColors.blue900,
-    textSize: 13,
-    iconColor: AppColors.blue900,
-    iconSize: 20,
-    fontWeight: FontWeight.w500,
+    textStyle: TextStyle(
+      fontFamily: AppFonts.inter,
+      fontWeight: FontWeight.w500,
+      fontSize: 13,
+      color: AppColors.blue900,
+      decoration: TextDecoration.underline,
+      decorationColor: AppColors.blue900,
+      letterSpacing: 0.1,
+    ),
   );
 
   static final dark = light;

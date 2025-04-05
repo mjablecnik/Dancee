@@ -32,33 +32,18 @@ class EventCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24, top: 15, bottom: 15),
       child: Container(
         padding: EdgeInsets.only(right: 18),
-        decoration: BoxDecoration(
-          border: Border(
-            right: BorderSide(
-              color: AppColors.grey400.withAlpha(50),
-            ),
-          ),
-        ),
+        decoration: BoxDecoration(border: Border(right: BorderSide(color: AppColors.grey400.withAlpha(50)))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               '${since.day}. ${since.month}.',
-              style: TextStyle(
-                fontFamily: AppFonts.inter,
-                fontWeight: FontWeight.w700,
-                fontSize: 19,
-                wordSpacing: -2,
-              ),
+              style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 19, wordSpacing: -2),
             ),
             Text(
               since.year.toString(),
-              style: TextStyle(
-                fontFamily: AppFonts.inter,
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-              ),
+              style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 15),
             ),
             SizedBox(height: 10),
             Text(
@@ -118,11 +103,7 @@ class EventCard extends StatelessWidget {
           if (chips.isEmpty)
             SizedBox(height: 20, width: 190)
           else
-            ChipList(
-              width: 190,
-              padding: EdgeInsets.zero,
-              chips: chips,
-            ),
+            ChipList(width: 190, padding: EdgeInsets.zero, chips: chips),
         ],
       ),
     );
@@ -154,12 +135,10 @@ class EventCard extends StatelessWidget {
             padding: EdgeInsets.only(right: 12),
             onTap: () {},
             leadingIcon: false,
-            icon: CupertinoIcons.right_chevron,
-            style: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.copyWith(
-              iconSize: 19,
-              textSize: 13,
-              iconColor: AppColors.grey400.withAlpha(200),
-              textColor: AppColors.grey400,
+            icon: Icon(CupertinoIcons.right_chevron, size: 19, color: AppColors.grey400.withAlpha(200)),
+            textStyle: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.textStyle.copyWith(
+              fontSize: 13,
+              color: AppColors.grey400,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -188,7 +167,7 @@ class EventCard extends StatelessWidget {
                 rightPart(context),
               ],
             );
-          }
+          },
         ),
       ),
     );

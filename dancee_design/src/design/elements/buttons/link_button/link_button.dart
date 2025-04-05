@@ -1,7 +1,6 @@
 import 'package:dancee_design/design/elements/buttons/link_button/link_button.style.dart' show LinkButtonStyle;
 import 'package:flutter/material.dart';
 
-
 class LinkButton extends StatelessWidget {
   const LinkButton({
     super.key,
@@ -11,15 +10,17 @@ class LinkButton extends StatelessWidget {
     this.leadingIcon = true,
     this.onTap,
     this.style,
+    this.textStyle,
   });
 
   final String text;
 
-  final IconData? icon;
+  final Widget? icon;
   final EdgeInsets? padding;
   final bool leadingIcon;
   final GestureTapCallback? onTap;
   final LinkButtonStyle? style;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class LinkButton extends StatelessWidget {
 
     return TextButton.icon(
       onPressed: onTap,
-      icon: icon == null ? null : Icon(icon, size: currentStyle.iconSize, color: currentStyle.iconColor),
+      icon: icon ?? const SizedBox.shrink(),
       iconAlignment: leadingIcon ? IconAlignment.start : IconAlignment.end,
       style: TextButton.styleFrom(
         elevation: 0,
@@ -35,18 +36,7 @@ class LinkButton extends StatelessWidget {
         overlayColor: Colors.transparent,
         padding: padding ?? EdgeInsets.zero,
       ),
-      label: Text(
-        text,
-        style: TextStyle(
-          fontFamily: 'Inter',
-          fontWeight: currentStyle.fontWeight,
-          fontSize: currentStyle.textSize,
-          color: currentStyle.textColor,
-          decoration: TextDecoration.underline,
-          decorationColor: currentStyle.textColor,
-          letterSpacing: 0.1,
-        ),
-      ),
+      label: Text(text, style: textStyle ?? currentStyle.textStyle),
     );
   }
 }
