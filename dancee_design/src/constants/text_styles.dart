@@ -26,6 +26,20 @@ class ButtonTextStyles {
 }
 
 class TextStyles {
+  static const TextStyle largeTitleTextStyle = TextStyle(
+    fontSize: 22,
+    fontFamily: AppFonts.inter,
+    fontWeight: FontWeight.w600,
+    height: 1.30,
+  );
+
+  static const TextStyle mediumTitleTextStyle = TextStyle(
+    fontSize: 16,
+    fontFamily: AppFonts.inter,
+    fontWeight: FontWeight.w600,
+    height: 1.10,
+  );
+
   static const TextStyle smallTitleTextStyle = TextStyle(
     fontFamily: AppFonts.inter,
     fontWeight: FontWeight.w600,

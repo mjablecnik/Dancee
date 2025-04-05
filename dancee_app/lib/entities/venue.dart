@@ -18,7 +18,7 @@ class Venue with _$Venue {
     @JsonKey(name: "postal_code") required String postalCode,
   }) = _Venue;
 
-  String format() => "$street\u00A0$number, $postalCode\u00A0$town";
+  String format([String separator = ', ']) => "$street\u00A0$number$separator$postalCode\u00A0$town";
 
   factory Venue.fromJson(Map<String, Object?> json) => _$VenueFromJson(json);
 }

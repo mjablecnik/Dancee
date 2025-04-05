@@ -1,8 +1,8 @@
 import 'package:dancee_app/entities/venue.dart';
 import 'package:dancee_app/entities/event.dart';
+import 'package:flutter/material.dart';
 import 'package:surrealdb/surrealdb.dart';
 import 'package:uuid/uuid.dart';
-
 
 class EventRepository {
   EventRepository({required this.db});
@@ -13,7 +13,6 @@ class EventRepository {
     var result = await db.query("SELECT *, venues.* FROM events");
     print(result);
   }
-
 
   Future<List<Event>> getEvents() async {
     // final response = await httpClient.request(
@@ -36,8 +35,7 @@ class EventRepository {
           town: "Praha",
           country: "Česko",
         ),
-        since: DateTime(2025, 12, 10, 20, 0, 0),
-        until: DateTime(2025, 12, 11, 1, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Vstup", value: "Zdarma"),
           EventInfo(type: EventInfoType.text, key: "Šatna", value: "Zdarma"),
@@ -46,9 +44,30 @@ class EventRepository {
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
-          EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
-          EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop1',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Workshop2',
+            type: EventPartType.workshop,
+            dances: ['Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Party',
+            type: EventPartType.party,
+            dances: ['Salsa', 'Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
       Event(
@@ -79,8 +98,7 @@ Speciální nabídka:
           town: "Praha",
           country: "Česko",
         ),
-        since: DateTime(2025, 2, 23, 19, 30, 0),
-        until: DateTime(2025, 2, 23, 22, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Vstup", value: "150 Kč"),
           EventInfo(type: EventInfoType.text, key: "Pouze party", value: "200Kč"),
@@ -88,9 +106,30 @@ Speciální nabídka:
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
-          EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
-          EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop1',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Workshop2',
+            type: EventPartType.workshop,
+            dances: ['Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Party',
+            type: EventPartType.party,
+            dances: ['Salsa', 'Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
       Event(
@@ -116,8 +155,7 @@ UrbanKiz + Zouk místnost: DJ PLAYLIST 😉 Playlist vytvořený ve spolupráci 
           town: "Praha 1 - Nové Město",
           country: "Česko",
         ),
-        since: DateTime(2025, 2, 23, 18, 0, 0),
-        until: DateTime(2025, 2, 23, 22, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Workshop a party", value: "300Kč"),
           EventInfo(type: EventInfoType.text, key: "Pouze party", value: "200Kč"),
@@ -126,9 +164,30 @@ UrbanKiz + Zouk místnost: DJ PLAYLIST 😉 Playlist vytvořený ve spolupráci 
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
-          EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
-          EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop1',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Workshop2',
+            type: EventPartType.workshop,
+            dances: ['Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Party',
+            type: EventPartType.party,
+            dances: ['Salsa', 'Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
       Event(
@@ -148,8 +207,7 @@ From the passionate steps of Dominican Bachata to the lively energy of Merengue,
           town: "Praha - Nové město",
           country: "Česko",
         ),
-        since: DateTime(2025, 2, 18, 19, 0, 0),
-        until: DateTime(2025, 2, 18, 21, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Vstupné", value: "Dobrovolné"),
           EventInfo(type: EventInfoType.text, key: "Pouze party", value: "200Kč"),
@@ -157,9 +215,30 @@ From the passionate steps of Dominican Bachata to the lively energy of Merengue,
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
-          EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
-          EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop1',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Workshop2',
+            type: EventPartType.workshop,
+            dances: ['Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Party',
+            type: EventPartType.party,
+            dances: ['Salsa', 'Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
       Event(
@@ -206,17 +285,37 @@ And of course, the great and only Dj Lole in the salsa room 🎵💥
           town: "Praha",
           country: "Česko",
         ),
-        since: DateTime(2025, 2, 23, 20, 15, 0),
-        until: DateTime(2025, 2, 24, 3, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Workshop a party", value: "300Kč"),
           EventInfo(type: EventInfoType.url, key: "Odkaz akce", value: "https://fb.me/e/2I1kgITdO"),
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop1', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
-          EventPart(name: 'Workshop2', type: EventPartType.workshop, dances: ['Bachata'], lectors: [], djs: []),
-          EventPart(name: 'Party', type: EventPartType.party, dances: ['Salsa', 'Bachata'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop1',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Workshop2',
+            type: EventPartType.workshop,
+            dances: ['Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
+          EventPart(
+            name: 'Party',
+            type: EventPartType.party,
+            dances: ['Salsa', 'Bachata'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
 
@@ -242,8 +341,7 @@ https://www.facebook.com/viktoriq.markova.7
           town: "Praha 8 - Invalidovna",
           country: "Česko",
         ),
-        since: DateTime(2025, 2, 23, 18, 0, 0),
-        until: DateTime(2025, 2, 23, 22, 0, 0),
+        dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
         info: [
           EventInfo(type: EventInfoType.text, key: "Lekce", value: "150Kč"),
           EventInfo(type: EventInfoType.text, key: "Party", value: "150Kč"),
@@ -252,7 +350,14 @@ https://www.facebook.com/viktoriq.markova.7
         ],
         organizer: "Salsaholics",
         parts: [
-          EventPart(name: 'Workshop123', type: EventPartType.workshop, dances: ['Salsa'], lectors: [], djs: []),
+          EventPart(
+            name: 'Workshop123',
+            type: EventPartType.workshop,
+            dances: ['Salsa'],
+            lectors: [],
+            djs: [],
+            dateTimeRange: DateTimeRange(start: DateTime(2025, 12, 10, 20, 0, 0), end: DateTime(2025, 12, 11, 1, 0, 0)),
+          ),
         ],
       ),
     ]);

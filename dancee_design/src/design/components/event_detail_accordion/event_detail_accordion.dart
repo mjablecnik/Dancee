@@ -25,15 +25,15 @@ class EventDetailAccordion extends StatelessWidget {
 
     return Accordion(
       header: Row(
-        spacing: 8,
+        spacing: 20,
         children: [
           SizedBox(
             width: 40,
             child: Text(time, style: TextStyles.smallTitleTextStyle),
           ),
-          Text("-", style: TextStyles.smallTitleTextStyle),
+          //Text("-", style: TextStyles.smallTitleTextStyle),
           SizedBox(
-            width: MediaQuery.of(context).size.width < 320 ? 180 : null,
+            width: MediaQuery.of(context).size.width < 420 ? 180 : null,
             child: Wrap(children: [Text(title, style: TextStyles.smallTitleTextStyle)]),
           ),
         ],
