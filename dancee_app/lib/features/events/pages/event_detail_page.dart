@@ -111,8 +111,10 @@ class _ProgramSection extends StatelessWidget {
                 description: program.description ?? 'Žádné další informace',
                 info: {
                   "Čas": program.dateTimeRange.formatString(),
-                  ...program.lectors != null && program.lectors!.isNotEmpty ? {"Lektoři": program.lectors!.join(', ')} : {},
-                  ...program.djs != null && program.lectors!.isNotEmpty ? {"DJ": program.djs!.join(', ')} : {},
+                  ...program.lectors != null && program.lectors!.isNotEmpty
+                      ? {"Lektoři": program.lectors!.join(', ')}
+                      : {},
+                  ...program.djs != null && program.djs!.isNotEmpty ? {"DJ": program.djs!.join(', ')} : {},
                 },
                 isOpen: false,
               ),
@@ -144,14 +146,7 @@ class _InfoSection extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child:
                         info.type == EventInfoType.url
-                            ? LinkButton(
-                              text: info.value,
-                              style: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.copyWith(
-                                fontWeight: FontWeight.w400,
-                                textSize: 12,
-                                textColor: AppColors.blue600,
-                              ),
-                            )
+                            ? LinkButton(text: info.value, textStyle: LinkTextStyles.smallLinkTextStyle)
                             : Text(info.value, style: TextStyles.smallBodyTextStyle),
                   ),
                 ),

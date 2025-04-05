@@ -28,7 +28,7 @@ class LinkButton extends StatelessWidget {
 
     return TextButton.icon(
       onPressed: onTap,
-      icon: icon ?? const SizedBox.shrink(),
+      icon: icon,
       iconAlignment: leadingIcon ? IconAlignment.start : IconAlignment.end,
       style: TextButton.styleFrom(
         elevation: 0,

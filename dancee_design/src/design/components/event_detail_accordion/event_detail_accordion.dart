@@ -28,7 +28,7 @@ class EventDetailAccordion extends StatelessWidget {
         spacing: 20,
         children: [
           SizedBox(
-            width: 40,
+            width: 42,
             child: Text(time, style: TextStyles.smallTitleTextStyle),
           ),
           //Text("-", style: TextStyles.smallTitleTextStyle),

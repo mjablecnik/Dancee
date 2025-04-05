@@ -16,14 +16,13 @@ class ActionSection extends StatelessWidget {
         children: [
           LinkButton(
             text: "Filtrovat",
-            icon: CupertinoIcons.slider_horizontal_3,
-            style: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.copyWith(iconSize: 14),
+            icon: Icon(CupertinoIcons.slider_horizontal_3, size: 14, color: AppColors.blue900),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           ),
           Spacer(),
           LinkButton(
             text: "Přidat událost",
-            icon: Icons.add,
+            icon: Icon(Icons.add, color: AppColors.blue900, size: 20),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           ),
         ],

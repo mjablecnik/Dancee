@@ -25,6 +25,28 @@ class ButtonTextStyles {
   );
 }
 
+class LinkTextStyles {
+  static const TextStyle mediumLinkTextStyle = TextStyle(
+    fontFamily: AppFonts.inter,
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    color: AppColors.blue900,
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.blue900,
+    letterSpacing: 0.1,
+  );
+
+  static const TextStyle smallLinkTextStyle = TextStyle(
+    fontFamily: AppFonts.inter,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    color: AppColors.blue600,
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.blue600,
+    letterSpacing: 0.1,
+  );
+}
+
 class TextStyles {
   static const TextStyle largeTitleTextStyle = TextStyle(
     fontSize: 22,
