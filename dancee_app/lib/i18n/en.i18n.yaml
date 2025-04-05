@@ -28,4 +28,21 @@ dialogs:
     well: "no"
 
 events:
-  title: "Event list"
+  list:
+    title: "List of events"
+    loading: "Loading.."
+    error: "Error"
+    actions:
+      filter: "Filter"
+      add: "Add event"
+  detail:
+    title: "Event detail"
+    describe: "Description"
+    attend: "I will attend"
+    links: "Odkazy"
+    program:
+      title: "Program"
+      no_more_info: "No more information"
+      time: "Time"
+      lectors: "Lectors"
+      dj: "DJ"

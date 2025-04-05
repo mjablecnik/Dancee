@@ -28,4 +28,21 @@ dialogs:
     no: "Ne"
 
 events:
-  title: "Seznam událostí"
+  list:
+    title: "Seznam událostí"
+    loading: "Eventy se načítají"
+    error: "Nastala chyba"
+    actions:
+      filter: "Filtrovat"
+      add: "Přidat událost"
+  detail:
+    title: "Detail události"
+    describe: "Popis"
+    attend: "Zúčastním se"
+    links: "Odkazy"
+    program:
+      title: "Program"
+      no_more_info: "Žádné další informace"
+      time: "Čas"
+      lectors: "Lektoři"
+      dj: "DJ"

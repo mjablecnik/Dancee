@@ -1,4 +1,5 @@
 import 'package:dancee_app/entities/event.dart';
+import 'package:dancee_app/i18n/translations.g.dart';
 import 'package:dancee_app/utils.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:flutter/material.dart' hide Chip;
@@ -24,7 +25,7 @@ class EventDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      title: "Detail události",
+      title: i18n.events.detail.title,
       child: Column(
         spacing: 20,
         children: [
@@ -40,7 +41,7 @@ class EventDetailPage extends StatelessWidget {
                   children: [
                     _EventDetailSection(event: event),
                     _SectionLayout(
-                      title: "Popis",
+                      title: i18n.events.detail.describe,
                       child: Text(event.description, style: TextStyles.smallBodyTextStyle),
                     ),
                     _ProgramSection(programList: event.parts),
@@ -50,7 +51,7 @@ class EventDetailPage extends StatelessWidget {
               ),
             ),
           ),
-          PrimaryButton(text: 'Zúčastním se', size: ButtonSize.large),
+          PrimaryButton(text: i18n.events.detail.attend, size: ButtonSize.large),
         ],
       ),
     );
@@ -98,7 +99,7 @@ class _ProgramSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SectionLayout(
-      title: "Program",
+      title: i18n.events.detail.program.title,
       child: Container(
         decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: AppColors.grey300))),
         child: Column(
@@ -108,13 +109,13 @@ class _ProgramSection extends StatelessWidget {
               EventDetailAccordion(
                 time: program.dateTimeRange.start.formatTimeString(),
                 title: program.name,
-                description: program.description ?? 'Žádné další informace',
+                description: program.description ?? i18n.events.detail.program.noMoreInfo,
                 info: {
-                  "Čas": program.dateTimeRange.formatString(),
+                  i18n.events.detail.program.time: program.dateTimeRange.formatString(),
                   ...program.lectors != null && program.lectors!.isNotEmpty
-                      ? {"Lektoři": program.lectors!.join(', ')}
+                      ? {i18n.events.detail.program.lectors: program.lectors!.join(', ')}
                       : {},
-                  ...program.djs != null && program.djs!.isNotEmpty ? {"DJ": program.djs!.join(', ')} : {},
+                  ...program.djs != null && program.djs!.isNotEmpty ? {i18n.events.detail.program.dj: program.djs!.join(', ')} : {},
                 },
                 isOpen: false,
               ),
@@ -133,7 +134,7 @@ class _InfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SectionLayout(
-      title: "Odkazy",
+      title: i18n.events.detail.links,
       child: Column(
         spacing: 4,
         children: [

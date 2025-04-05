@@ -25,7 +25,7 @@ class EventListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      title: i18n.events.title,
+      title: i18n.events.list.title,
       child: Column(
         children: [
           ActionSection(),
@@ -33,8 +33,8 @@ class EventListPage extends StatelessWidget {
             bloc: injector.use<EventListCubit>(),
             builder: (context, state) {
               return state.when(
-                loading: () => Text("Eventy se načítají"),
-                failed: (e) => Text("Nastala chyba: $e"),
+                loading: () => Text(i18n.events.list.loading),
+                failed: (e) => Text("${i18n.events.list.error}: $e"),
                 loaded: (events) => Expanded(child: EventList(events: events)),
               );
             },
@@ -88,13 +88,13 @@ class ActionSection extends StatelessWidget {
       child: Row(
         children: [
           LinkButton(
-            text: "Filtrovat",
+            text: i18n.events.list.actions.filter,
             icon: Icon(CupertinoIcons.slider_horizontal_3, size: 14, color: AppColors.blue900),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           ),
           Spacer(),
           LinkButton(
-            text: "Přidat událost",
+            text: i18n.events.list.actions.add,
             icon: Icon(Icons.add, color: AppColors.blue900, size: 20),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           ),
