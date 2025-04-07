@@ -1,7 +1,7 @@
-import 'package:dancee_app/entities/event.dart';
 import 'package:dancee_app/i18n/translations.g.dart';
-import 'package:dancee_app/utils.dart';
+import 'package:dancee_shared/utils.dart';
 import 'package:dancee_design/dancee_design.dart';
+import 'package:dancee_shared/entities/event.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:vader_app/vader_app.dart';
 

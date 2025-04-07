@@ -1,5 +1,5 @@
+import 'package:dancee_shared/entities.dart';
 import 'package:vader_app/vader_app.dart';
-import 'package:dancee_app/entities/user.dart';
 
 part 'auth_state.freezed.dart';
 

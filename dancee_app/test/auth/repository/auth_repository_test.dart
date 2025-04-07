@@ -1,5 +1,5 @@
-import 'package:dancee_app/entities/user.dart';
 import 'package:dancee_app/features/auth/auth_repository.dart';
+import 'package:dancee_shared/entities.dart';
 import 'package:vader_app/vader_app.dart';
 import 'package:test/test.dart';
 

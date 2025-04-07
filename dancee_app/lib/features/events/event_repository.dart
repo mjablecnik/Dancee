@@ -1,6 +1,4 @@
-import 'package:dancee_app/entities/venue.dart';
-import 'package:dancee_app/entities/event.dart';
-import 'package:flutter/material.dart';
+import 'package:dancee_shared/entities.dart';
 import 'package:surrealdb/surrealdb.dart';
 import 'package:uuid/uuid.dart';
 

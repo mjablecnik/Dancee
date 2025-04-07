@@ -1,4 +1,4 @@
-import 'package:dancee_app/entities/user.dart';
+import 'package:dancee_shared/entities.dart';
 
 final expectedLoginUser = User(
   id: '1',

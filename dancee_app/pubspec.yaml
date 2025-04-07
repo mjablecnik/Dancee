@@ -19,6 +19,8 @@ dependencies:
 
   # Design dependencies:
   cupertino_icons: ^1.0.8
+  dancee_shared:
+    path: ../dancee_shared
   dancee_design:
     path: ../dancee_design
 

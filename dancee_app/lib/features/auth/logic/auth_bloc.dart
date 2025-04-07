@@ -1,4 +1,4 @@
-import 'package:dancee_app/entities/user.dart';
+import 'package:dancee_shared/entities.dart';
 import 'package:vader_app/vader_app.dart';
 import 'package:dancee_app/features/auth/logic/auth_events.dart';
 import 'package:dancee_app/features/auth/logic/auth_state.dart';

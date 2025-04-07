@@ -1,6 +1,6 @@
+import 'package:dancee_shared/entities/user.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vader_app/vader_app.dart';
-import 'package:dancee_app/entities/user.dart';
 
 class UserRepository extends Repository {
   UserRepository({required super.httpClient, required super.storageClient});

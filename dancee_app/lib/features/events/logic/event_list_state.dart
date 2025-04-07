@@ -1,4 +1,4 @@
-import 'package:dancee_app/entities/event.dart';
+import 'package:dancee_shared/entities/event.dart';
 import 'package:vader_app/vader_app.dart';
 
 part 'event_list_state.freezed.dart';

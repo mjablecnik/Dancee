@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dancee_app/entities/user.dart';
 import 'package:dancee_app/features/app/user_repository.dart';
+import 'package:dancee_shared/entities.dart';
 import 'package:vader_app/vader_app.dart';
 
 enum LoginType { basic, token }

@@ -1,7 +1,7 @@
-import 'package:dancee_app/entities/event.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_app/features/events/logic/event_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
+import 'package:dancee_shared/entities/event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:vader_app/vader_app.dart';
