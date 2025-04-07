@@ -1,48 +1,56 @@
 import 'package:dio/dio.dart';
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
+import 'package:serinus_service/config.dart';
+import 'package:vader_core/clients/logger.dart';
 
 class ClientFactory {
-  static Dio createHttpClient({
-    String? baseUrl,
-    String? apiKey,
-    String? apiSecret,
-    String contentType = "application/json",
-    String responseType = "json",
-  }) {
+  static Dio fbServiceClient({String contentType = "application/json", String responseType = "json"}) {
     final dio = Dio();
-    if (apiKey != null || apiSecret != null) {
-      final token = _generateJwt(apiKey!, apiSecret!);
-      dio.options.headers["Authorization"] = "Bearer $token";
-    }
-
-    dio.options.headers["Content-Type"] = "application/json";
+    dio.options.headers["Content-Type"] = contentType;
+    dio.options.baseUrl = ServerConfig.fbServiceUrl;
     dio.options.responseType = ResponseType.values.byName(responseType);
-    if (baseUrl != null) dio.options.baseUrl = baseUrl;
     return dio;
   }
+}
 
-  static String _generateJwt(String apiKey, String apiSecret) {
-    String base64UrlEncode(List<int> data) {
-      return base64Url.encode(data).replaceAll('=', '');
-    }
+class AiClient {
+  static Future<Map<String, dynamic>> makeQuery({
+    required String rules,
+    required String question,
+    required String queryName,
+  }) async {
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://api.together.xyz',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${ServerConfig.togetherAiSdkKey}',
+        },
+      ),
+    );
 
-    final header = jsonEncode({"alg": "HS256", "typ": "JWT"});
-    final payload = jsonEncode({
-      "uid": apiKey,
-      "exp": DateTime.now().millisecondsSinceEpoch ~/ 1000 + 3600,
-      "iat": DateTime.now().millisecondsSinceEpoch ~/ 1000,
-    });
+    final response = await dio.post(
+      '/v1/chat/completions',
+      data: {
+        'model': ServerConfig.togetherAiSdkModel,
+        'stop': ['</s>', '[/INST]'],
+        'max_tokens': 3000,
+        'temperature': 0.7,
+        'top_p': 0.7,
+        'top_k': 50,
+        'repetition_penalty': 1,
+        'messages': [
+          {'role': 'system', 'content': rules},
+          {'role': 'user', 'content': question},
+        ],
+      },
+    );
 
-    final headerB64 = base64UrlEncode(utf8.encode(header));
-    final payloadB64 = base64UrlEncode(utf8.encode(payload));
-    final signingInput = "$headerB64.$payloadB64";
+    final data = response.data;
+    logger.info(queryName + ': ' + data['usage'].toString());
+    final String content = data['choices'][0]['message']['content'];
 
-    final key = utf8.encode(apiSecret);
-    final hmacSha256 = Hmac(sha256, key);
-    final signature = hmacSha256.convert(utf8.encode(signingInput));
-    final signatureB64 = base64UrlEncode(signature.bytes);
-
-    return "$headerB64.$payloadB64.$signatureB64";
+    return jsonDecode(content.replaceAll('```', ''));
   }
 }

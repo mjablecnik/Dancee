@@ -16,6 +16,8 @@ class Event extends VaderEntity with _$Event {
     @JsonKey(toJson: _toJsonUUID) required String id,
     required String title,
     required String description,
+    required String originalDescription,
+    required String originalUrl,
     required String organizer,
     @JsonKey(toJson: _toJsonVenue) required Venue venue,
     @JsonKey(fromJson: _fromJsonDateTimeRange, toJson: _toJsonDateTimeRange, name: 'date_time_range')
@@ -65,8 +67,8 @@ DateTimeRange _fromJsonDateTimeRange(String json) {
   return DateTimeRange(start: DateTime.parse(map["start"]!), end: DateTime.parse(map["end"]!));
 }
 
-String _toJsonDateTimeRange(DateTimeRange date) {
-  return jsonEncode({"start": date.start.toUtc().toIso8601String(), "end": date.end.toUtc().toIso8601String()});
+Map<String, Object?> _toJsonDateTimeRange(DateTimeRange date) {
+  return {"start": date.start.toUtc().toIso8601String(), "end": date.end.toUtc().toIso8601String()};
 }
 
 String _toJsonUUID(String uuid) => 'u\'$uuid\'';
