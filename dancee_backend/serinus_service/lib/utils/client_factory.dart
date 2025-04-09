@@ -30,6 +30,8 @@ class AiClient {
       ),
     );
 
+    //dio.interceptors.add(LogInterceptor(requestBody: false, responseBody: true));
+
     final response = await dio.post(
       '/v1/chat/completions',
       data: {

@@ -15,6 +15,7 @@ class EventService extends Provider {
       return {'type': eventType};
     } else {
       logger.info('Event type is: $eventType');
+      await Future.delayed(Duration(seconds: 11));
       final updatedEvent = await eventRepository.updateEventInfo(event);
       return updatedEvent;
     }
