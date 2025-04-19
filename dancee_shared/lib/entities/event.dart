@@ -25,6 +25,7 @@ class Event extends VaderEntity with _$Event {
       name: 'date_time_range',
     )
     required DateTimeRange dateTimeRange,
+    required String timezone,
     @JsonKey(name: 'event_info') required List<EventInfo> info,
     @JsonKey(name: 'event_parts') required List<EventPart> parts,
   }) = _Event;

@@ -45,6 +45,7 @@ void main() {
         start: DateTime.utc(2025, 5, 16, 18, 0),
         end: DateTime.utc(2025, 5, 18, 23, 59),
       ),
+      timezone: "UTC+02",
       info: [eventInfo],
       parts: [eventPart],
     );

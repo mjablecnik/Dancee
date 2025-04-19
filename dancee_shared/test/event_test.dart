@@ -27,6 +27,7 @@ void main() {
           start: DateTime(2023, 10, 15, 18, 0),
           end: DateTime(2023, 10, 15, 23, 0),
         ),
+        timezone: "UTC+02",
         info: [
           EventInfo(type: EventInfoType.price, key: 'entry', value: '15€'),
           EventInfo(type: EventInfoType.url, key: 'tickets', value: 'https://example.com/tickets/salsa-night'),

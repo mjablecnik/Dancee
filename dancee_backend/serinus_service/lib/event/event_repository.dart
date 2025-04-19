@@ -60,6 +60,7 @@ class EventRepository extends Provider {
         start: DateTime.fromMillisecondsSinceEpoch(payload["startTimestamp"] * 1000),
         end: DateTime.fromMillisecondsSinceEpoch(payload["endTimestamp"] * 1000),
       ),
+      timezone: payload['timezone'],
       organizer: payload["hosts"].map((e) => e["name"]).join(" a "),
       originalDescription: payload["description"],
       description: "",
