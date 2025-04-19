@@ -1,4 +1,5 @@
 import 'package:dancee_shared/entities.dart';
+import 'package:dancee_shared/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -23,8 +24,8 @@ void main() {
           postalCode: '12345',
         ),
         dateTimeRange: DateTimeRange(
-          start: DateTime(2023, 10, 15, 18, 0).toUtc(),
-          end: DateTime(2023, 10, 15, 23, 0).toUtc(),
+          start: DateTime(2023, 10, 15, 18, 0),
+          end: DateTime(2023, 10, 15, 23, 0),
         ),
         info: [
           EventInfo(type: EventInfoType.price, key: 'entry', value: '15€'),

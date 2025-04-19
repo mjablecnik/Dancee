@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:dancee_shared/entities/venue.dart';
+import 'package:dancee_shared/utils.dart';
 import 'package:date_time/date_time.dart';
 import 'package:vader_core/vader_core.dart';
 
@@ -20,7 +19,11 @@ class Event extends VaderEntity with _$Event {
     required String originalUrl,
     required String organizer,
     required Venue venue,
-    @JsonKey(fromJson: _fromJsonDateTimeRange, toJson: _toJsonDateTimeRange, name: 'date_time_range')
+    @JsonKey(
+      fromJson: DateTimeRangeSerialization.fromJsonDateTimeRange,
+      toJson: DateTimeRangeSerialization.toJsonDateTimeRange,
+      name: 'date_time_range',
+    )
     required DateTimeRange dateTimeRange,
     @JsonKey(name: 'event_info') required List<EventInfo> info,
     @JsonKey(name: 'event_parts') required List<EventPart> parts,
@@ -51,7 +54,11 @@ class EventPart extends VaderEntity with _$EventPart {
     String? description,
     required EventPartType type,
     required List<String> dances,
-    @JsonKey(fromJson: _fromJsonDateTimeRange, toJson: _toJsonDateTimeRange, name: 'date_time_range')
+    @JsonKey(
+      fromJson: DateTimeRangeSerialization.fromJsonDateTimeRange,
+      toJson: DateTimeRangeSerialization.toJsonDateTimeRange,
+      name: 'date_time_range',
+    )
     required DateTimeRange dateTimeRange,
     List<String>? lectors,
     List<String>? djs,
@@ -62,21 +69,11 @@ class EventPart extends VaderEntity with _$EventPart {
 
 enum EventPartType { party, workshop }
 
-DateTimeRange _fromJsonDateTimeRange(String json) {
-  Map<String, dynamic> map = jsonDecode(json);
-  return DateTimeRange(start: DateTime.utc(map["start"]!), end: DateTime.utc(map["end"]!));
-}
-
-Map<String, Object?> _toJsonDateTimeRange(DateTimeRange date) {
-  return {"start": date.start.toUtc().toIso8601String(), "end": date.end.toUtc().toIso8601String()};
-}
-
 String _toSurrealUUID(String uuid) => 'u\'$uuid\'';
 
 String _toSurrealVenue(Venue venue) {
   return 'venues:u\'${venue.id}\'';
 }
-
 
 extension EventSerialization on Event {
   Map<String, dynamic> toSurrealQl() {
