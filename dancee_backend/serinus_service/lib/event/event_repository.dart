@@ -2,7 +2,7 @@ import 'package:dancee_shared/entities.dart';
 import 'package:serinus/serinus.dart';
 import 'package:serinus_service/config.dart';
 import 'package:serinus_service/event/enums.dart';
-import 'package:serinus_service/utils/client_factory.dart';
+import 'package:serinus_service/core/client_factory.dart';
 import 'package:vader_core/clients/logger.dart';
 import 'package:google_geocoding_api/google_geocoding_api.dart';
 
