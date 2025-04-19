@@ -1,6 +1,0 @@
-{
-    "type":"module",
-  "dependencies": {
-    "facebook-event-scraper": "^0.1.2"
-  }
-}
