@@ -1,0 +1,15 @@
+version: '3'
+# Manual is here: https://taskfile.dev/usage/
+
+tasks:
+  help:
+    aliases: [default]
+    cmd: "task --list"
+
+  deploy:
+    cmd: "flyctl deploy"
+    desc: "Deploy service to Fly.io"
+
+  launch:
+    cmd: "flyctl launch"
+    desc: "Initialize service to Fly.io"

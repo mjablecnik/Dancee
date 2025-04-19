@@ -11,7 +11,7 @@ app.get('/scrape/event', async (req, res) => {
   const url = req.query.url;
   try {
     const eventData = await scrapeFbEvent(url);
-    console.log(eventData);
+    //console.log(eventData);
     res.json({ payload: eventData });
   } catch (err) {
     res.status(500).json({ error: 'Došlo k chybě při získávání dat' });

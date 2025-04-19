@@ -40,3 +40,11 @@ tasks:
   generate-models:
     cmd: "serinus generate models"
     desc: "Generate serinus ModelProvider"
+
+  deploy:
+    cmd: "flyctl deploy"
+    desc: "Deploy service to Fly.io"
+
+  launch:
+    cmd: "flyctl launch"
+    desc: "Initialize service to Fly.io"
