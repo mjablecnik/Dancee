@@ -13,13 +13,13 @@ class Event extends VaderEntity with _$Event {
   const Event._();
 
   const factory Event({
-    @JsonKey(toJson: _toJsonUUID) required String id,
+    required String id,
     required String title,
     required String description,
     required String originalDescription,
     required String originalUrl,
     required String organizer,
-    @JsonKey(toJson: _toJsonVenue) required Venue venue,
+    required Venue venue,
     @JsonKey(fromJson: _fromJsonDateTimeRange, toJson: _toJsonDateTimeRange, name: 'date_time_range')
     required DateTimeRange dateTimeRange,
     @JsonKey(name: 'event_info') required List<EventInfo> info,
@@ -71,6 +71,18 @@ Map<String, Object?> _toJsonDateTimeRange(DateTimeRange date) {
   return {"start": date.start.toUtc().toIso8601String(), "end": date.end.toUtc().toIso8601String()};
 }
 
-String _toJsonUUID(String uuid) => 'u\'$uuid\'';
+String _toSurrealUUID(String uuid) => 'u\'$uuid\'';
 
-String _toJsonVenue(Venue venue) => 'venues:u\'${venue.id}\'';
+String _toSurrealVenue(Venue venue) {
+  return 'venues:u\'${venue.id}\'';
+}
+
+
+extension EventSerialization on Event {
+  Map<String, dynamic> toSurrealQl() {
+    final result = toJson();
+    result['id'] = _toSurrealUUID(result['id']);
+    result['venue'] = _toSurrealVenue(result['venue']);
+    return result;
+  }
+}

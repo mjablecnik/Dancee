@@ -9,7 +9,7 @@ class Venue extends VaderEntity with _$Venue {
   const Venue._();
 
   const factory Venue({
-    @JsonKey(toJson: _toJsonUUID) required String id,
+    required String id,
     required String name,
     required String street,
     required String number,
@@ -23,4 +23,12 @@ class Venue extends VaderEntity with _$Venue {
   factory Venue.fromJson(Map<String, Object?> json) => _$VenueFromJson(json);
 }
 
-String _toJsonUUID(String uuid) => 'u\'$uuid\'';
+String _toSurrealUUID(String uuid) => 'u\'$uuid\'';
+
+extension VenueSerialization on Venue {
+  Map<String, dynamic> toSurrealQl() {
+    final result = toJson();
+    result['id'] = _toSurrealUUID(result['id']);
+    return result;
+  }
+}
