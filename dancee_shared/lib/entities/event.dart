@@ -63,8 +63,8 @@ class EventPart extends VaderEntity with _$EventPart {
 enum EventPartType { party, workshop }
 
 DateTimeRange _fromJsonDateTimeRange(String json) {
-  Map<String, String> map = jsonDecode(json);
-  return DateTimeRange(start: DateTime.parse(map["start"]!), end: DateTime.parse(map["end"]!));
+  Map<String, dynamic> map = jsonDecode(json);
+  return DateTimeRange(start: DateTime.utc(map["start"]!), end: DateTime.utc(map["end"]!));
 }
 
 Map<String, Object?> _toJsonDateTimeRange(DateTimeRange date) {
