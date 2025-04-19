@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   serinus: ^1.0.3
-  vader_core: ^0.4.1
+  vader_core: ^0.4.2
   google_geocoding_api: ^1.5.2
   dancee_shared:
     path: ../../dancee_shared

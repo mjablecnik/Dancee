@@ -1076,10 +1076,10 @@ packages:
     dependency: "direct main"
     description:
       name: vader_core
-      sha256: c6a3bce474ddef2e43c238da0dca6a2ff12513de27722a8e003aba375c5a119a
+      sha256: "85db7b49c29b6e55dcdeda6044fb62ec271e7a358c2ec623a50273dc32bec9e8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.2"
   vader_design:
     dependency: transitive
     description:

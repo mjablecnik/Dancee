@@ -15,7 +15,7 @@ dependencies:
 
   # Vader dependencies:
   vader_app: ^0.3.2
-  vader_core: ^0.4.1
+  vader_core: ^0.4.2
 
   # Design dependencies:
   cupertino_icons: ^1.0.8
