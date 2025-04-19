@@ -19,12 +19,6 @@ class AppModule extends Module {
         controllers: [EventController()],
         providers: [
           EventService(EventRepository()),
-          //EventRepository(),
-          //Provider.deferred(
-          //  (EventRepository databaseService) async => EventService(databaseService),
-          //  inject: [EventRepository],
-          //  type: EventService,
-          //),
         ],
       );
 }
