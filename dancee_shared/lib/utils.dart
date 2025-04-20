@@ -48,8 +48,7 @@ extension DateTimeRangeSerialization on DateTimeRange {
     return {"start": date.start.toUtc().toIso8601String(), "end": date.end.toUtc().toIso8601String()};
   }
 
-  static DateTimeRange fromJsonDateTimeRange(String json) {
-    final Map<String, String> map = jsonDecode(json);
-    return DateTimeRange(start: DateTime.parse(map["start"]!), end: DateTime.parse(map["end"]!));
+  static DateTimeRange fromJsonDateTimeRange(Map<String, dynamic> json) {
+    return DateTimeRange(start: DateTime.parse(json["start"]!), end: DateTime.parse(json["end"]!));
   }
 }
