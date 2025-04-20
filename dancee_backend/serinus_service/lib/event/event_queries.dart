@@ -21,6 +21,36 @@ none: Nejedná se o žádnou výše zmíněnou taneční událost kam člověk p
 Z následujícího textu získej informace o taneční akci a vygeneruj výstup ve formě JSONu s touto přesnou strukturou:
 
 {
+  "event_info": [
+    {
+      "type": "url | price",
+      "key": "string",
+      "value": "string",
+    }
+  ]
+}
+
+Do pole event_parts dej údaje jako jsou: 
+- Odkaz na registraci
+- Cena za vstup
+
+Cokoliv jiného než je právě odkaz nebo cena tam nedávej.
+
+**Důležité pravidla:**
+
+1. Výstup musí být POUZE validní JSON dle výše uvedené struktury.
+2. Pokud se některá hodnota nedá určit, ponech ji jako prázdný řetězec `""`, prázdné pole `[]`, nebo `null` – podle typu.
+3. Texty ve výstupu musí být přeložené do češtiny, i pokud byl vstupní text v jiném jazyce.
+4. Podle toho zda value je text, url nebo cena bude vypadat i value. 
+5. Pokud je typ url, tak value musí být validní URL jinak value bude null.
+6. Pokud je typ price, tak value musí být validní cena (nappříklad: 300 Kč) jinak value bude null.
+7. Pokud nebude v textu vyloženě u odkazu uvedeno že toto je odkaz na registraci, tak value bude pro url null.
+""";
+
+  static const eventPartsRules = """
+Z následujícího textu získej informace o taneční akci a vygeneruj výstup ve formě JSONu s touto přesnou strukturou:
+
+{
   "description": "string (popis akce v češtině)",
   "event_parts": [
     {

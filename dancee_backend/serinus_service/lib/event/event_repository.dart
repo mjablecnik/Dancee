@@ -86,11 +86,11 @@ class EventRepository extends Provider {
     }
   }
 
-  Future<Event> updateEventInfo(Event event) async {
+  Future<({String description, List<EventPart> eventParts})> getEventParts(Event event) async {
     final result = await AiClient.makeQuery(
-      rules: EventQuery.eventInfoRules,
+      rules: EventQuery.eventPartsRules,
       question: event.originalDescription,
-      queryName: 'updateEventInfo',
+      queryName: 'getEventParts',
     );
     final List<EventPart> eventParts = [];
     for (final e in result["event_parts"]) {
@@ -109,6 +109,28 @@ class EventRepository extends Provider {
         ),
       );
     }
-    return event.copyWith(description: result['description'], parts: eventParts, originalDescription: '');
+    return (description: result['description'] as String, eventParts: eventParts);
+  }
+
+  Future<List<EventInfo>> getEventInfo(Event event) async {
+    final result = await AiClient.makeQuery(
+      rules: EventQuery.eventInfoRules,
+      question: event.originalDescription,
+      queryName: 'getEventInfo',
+    );
+    print(result);
+    final List<EventInfo> eventInfo = [];
+    for (final e in result["event_info"]) {
+      if (e["value"] != null && e["value"] != "") {
+        eventInfo.add(
+          EventInfo(
+            type: EventInfoType.values.byName(e["type"]),
+            key: e["key"],
+            value: e["value"],
+          ),
+        );
+      }
+    }
+    return eventInfo;
   }
 }

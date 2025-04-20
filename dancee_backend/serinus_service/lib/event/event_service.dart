@@ -17,7 +17,16 @@ class EventService extends Provider {
     } else {
       logger.debug('Event type is: $eventType');
       await Future.delayed(Duration(seconds: 11));
-      final Event updatedEvent = await eventRepository.updateEventInfo(event);
+      final (:description, :eventParts) = await eventRepository.getEventParts(event);
+      await Future.delayed(Duration(seconds: 11));
+      final List<EventInfo> eventInfo = await eventRepository.getEventInfo(event);
+
+      final updatedEvent = event.copyWith(
+        description: description,
+        originalDescription: '',
+        parts: eventParts,
+        info: eventInfo,
+      );
       return updatedEvent;
     }
   }
