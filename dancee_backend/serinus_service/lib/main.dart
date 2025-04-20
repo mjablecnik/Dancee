@@ -1,3 +1,4 @@
+import 'package:dancee_shared/clients/surrealdb_client.dart';
 import 'package:serinus/serinus.dart';
 import 'package:hotreloader/hotreloader.dart';
 import 'package:serinus_service/core/client_factory.dart';
@@ -18,6 +19,13 @@ class AppModule extends Module {
     : super(
         imports: [],
         controllers: [EventController()],
-        providers: [EventService(EventRepository(aiClient: AiClient()))],
+        providers: [
+          Provider.deferred(
+            () async =>
+                EventService(EventRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.initDancee())),
+            inject: [],
+            type: EventService,
+          ),
+        ],
       );
 }

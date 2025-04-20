@@ -608,6 +608,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  surrealdb:
+    dependency: "direct main"
+    description:
+      name: surrealdb
+      sha256: "1c9d4568c5b3c30b993990dbafb707c8e41d7c7719f88b710c6f2b66c601e5de"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   talker:
     dependency: transitive
     description:

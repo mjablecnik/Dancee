@@ -23,7 +23,7 @@ class EventService extends Provider {
 
       final updatedEvent = event.copyWith(
         description: description,
-        originalDescription: '',
+        //originalDescription: '',
         parts: eventParts,
         info: eventInfo,
       );

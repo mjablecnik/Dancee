@@ -13,7 +13,6 @@ dependencies:
   dancee_shared:
     path: ../../dancee_shared
 
-
 dev_dependencies:
   freezed: ^2.5.7
   hotreloader: ^4.1.0

@@ -46,3 +46,6 @@ settings.dart
 node_modules/
 
 config.dart
+
+dancee_backend/serinus_service/bin/
+

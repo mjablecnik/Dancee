@@ -1,3 +1,4 @@
+import 'package:dancee_shared/clients/surrealdb_client.dart';
 import 'package:dancee_shared/entities.dart';
 import 'package:serinus/serinus.dart';
 import 'package:serinus_service/config.dart';
@@ -7,11 +8,11 @@ import 'package:vader_core/clients/logger.dart';
 import 'package:google_geocoding_api/google_geocoding_api.dart';
 
 import 'event_queries.dart';
-
 class EventRepository extends Provider {
-  const EventRepository({required this.aiClient});
+  const EventRepository({required this.aiClient, required this.surrealDB});
 
   final IAiClient aiClient;
+  final SurrealDB surrealDB;
 
   Future<Venue> getVenue(Map<String, dynamic> location) async {
     if (location['name'] != null &&
@@ -135,5 +136,13 @@ class EventRepository extends Provider {
       }
     }
     return eventInfo;
+  }
+
+  Future<bool> saveEvent(Event event) async {
+    print("Save event: ${event.title}");
+    // Fetch version information
+    final version = await surrealDB.version();
+    print('SurrealDB version: $version');
+    return true;
   }
 }

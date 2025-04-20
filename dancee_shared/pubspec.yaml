@@ -10,6 +10,7 @@ dependencies:
   date_time: ^0.11.0
   vader_core: ^0.4.2
   json_annotation: ^4.9.0
+  surrealdb: ^1.1.0
 
 dev_dependencies:
   json_serializable: ^6.9.0
