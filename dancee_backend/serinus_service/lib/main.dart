@@ -1,5 +1,6 @@
 import 'package:serinus/serinus.dart';
 import 'package:hotreloader/hotreloader.dart';
+import 'package:serinus_service/core/client_factory.dart';
 import 'package:serinus_service/event/event_controller.dart';
 import 'package:serinus_service/event/event_repository.dart';
 import 'package:serinus_service/event/event_service.dart';
@@ -17,8 +18,6 @@ class AppModule extends Module {
     : super(
         imports: [],
         controllers: [EventController()],
-        providers: [
-          EventService(EventRepository()),
-        ],
+        providers: [EventService(EventRepository(aiClient: AiClient()))],
       );
 }

@@ -9,7 +9,9 @@ import 'package:google_geocoding_api/google_geocoding_api.dart';
 import 'event_queries.dart';
 
 class EventRepository extends Provider {
-  const EventRepository();
+  const EventRepository({required this.aiClient});
+
+  final IAiClient aiClient;
 
   Future<Venue> getVenue(Map<String, dynamic> location) async {
     if (location['name'] != null &&
@@ -73,7 +75,7 @@ class EventRepository extends Provider {
   }
 
   Future<EventType> getEventType(Event event) async {
-    final result = await AiClient.makeQuery(
+    final result = await aiClient.query(
       rules: EventQuery.eventTypeRules,
       question: event.originalDescription,
       queryName: 'getEventType',
@@ -87,7 +89,7 @@ class EventRepository extends Provider {
   }
 
   Future<({String description, List<EventPart> eventParts})> getEventParts(Event event) async {
-    final result = await AiClient.makeQuery(
+    final result = await aiClient.query(
       rules: EventQuery.eventPartsRules,
       question: event.originalDescription,
       queryName: 'getEventParts',
@@ -113,7 +115,7 @@ class EventRepository extends Provider {
   }
 
   Future<List<EventInfo>> getEventInfo(Event event) async {
-    final result = await AiClient.makeQuery(
+    final result = await aiClient.query(
       rules: EventQuery.eventInfoRules,
       question: event.originalDescription,
       queryName: 'getEventInfo',

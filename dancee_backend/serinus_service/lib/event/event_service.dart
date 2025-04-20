@@ -11,14 +11,14 @@ class EventService extends Provider {
   Future<Event> getEvent(String url) async {
     final Event event = await eventRepository.getFbEvent(url);
     final EventType eventType = await eventRepository.getEventType(event);
+
     if (![EventType.party, EventType.workshop, EventType.festival].contains(eventType)) {
       logger.debug('Event type is: $eventType');
       throw Exception('Event type \'$eventType\' is not supported');
     } else {
       logger.debug('Event type is: $eventType');
-      await Future.delayed(Duration(seconds: 11));
+
       final (:description, :eventParts) = await eventRepository.getEventParts(event);
-      await Future.delayed(Duration(seconds: 11));
       final List<EventInfo> eventInfo = await eventRepository.getEventInfo(event);
 
       final updatedEvent = event.copyWith(
