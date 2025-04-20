@@ -122,7 +122,6 @@ class EventRepository extends Provider {
       question: event.originalDescription,
       queryName: 'getEventInfo',
     );
-    print(result);
     final List<EventInfo> eventInfo = [];
     for (final e in result["event_info"]) {
       if (e["value"] != null && e["value"] != "") {
