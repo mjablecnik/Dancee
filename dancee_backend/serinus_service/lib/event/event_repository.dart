@@ -26,6 +26,7 @@ class EventRepository extends Provider {
         town: location["city"]["name"],
         country: location["countryCode"],
         postalCode: '',
+        coordinates: Coordinates.fromJson(location["coordinates"]),
       );
     } else {
       final latitude = location['coordinates']['latitude'];
@@ -43,6 +44,7 @@ class EventRepository extends Provider {
         town: address[1],
         country: address.last,
         postalCode: '',
+        coordinates: Coordinates.fromJson(location["coordinates"]),
       );
     }
   }

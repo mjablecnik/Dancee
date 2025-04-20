@@ -16,6 +16,7 @@ class Venue extends VaderEntity with _$Venue {
     required String town,
     required String country,
     @JsonKey(name: "postal_code") required String postalCode,
+    required Coordinates coordinates,
   }) = _Venue;
 
   String format([String separator = ', ']) => "$street\u00A0$number$separator$postalCode\u00A0$town";
@@ -31,4 +32,16 @@ extension VenueSerialization on Venue {
     result['id'] = _toSurrealUUID(result['id']);
     return result;
   }
+}
+
+@freezed
+class Coordinates extends VaderEntity with _$Coordinates {
+  const Coordinates._();
+
+  const factory Coordinates({
+    required double latitude,
+    required double longitude,
+  }) = _Coordinates;
+
+  factory Coordinates.fromJson(Map<String, Object?> json) => _$CoordinatesFromJson(json);
 }

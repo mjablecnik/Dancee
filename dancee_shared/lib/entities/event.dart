@@ -15,8 +15,8 @@ class Event extends VaderEntity with _$Event {
     required String id,
     required String title,
     required String description,
-    required String originalDescription,
-    required String originalUrl,
+    @JsonKey(name: "original_description") required String originalDescription,
+    @JsonKey(name: "original_url") required String originalUrl,
     required String organizer,
     required Venue venue,
     @JsonKey(

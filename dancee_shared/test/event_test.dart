@@ -22,6 +22,7 @@ void main() {
           town: 'City',
           country: 'Czech Republic',
           postalCode: '12345',
+          coordinates: Coordinates(longitude: 51.328015714375, latitude: 12.330098400988),
         ),
         dateTimeRange: DateTimeRange(
           start: DateTime(2023, 10, 15, 18, 0),

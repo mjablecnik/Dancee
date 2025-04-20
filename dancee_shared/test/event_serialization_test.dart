@@ -13,6 +13,7 @@ void main() {
       town: 'Praha',
       country: 'Česká republika',
       postalCode: '14000',
+      coordinates: Coordinates(longitude: 51.328015714375, latitude: 12.330098400988),
     );
 
     final eventPart = EventPart(
