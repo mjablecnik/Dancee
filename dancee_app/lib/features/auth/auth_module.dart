@@ -11,8 +11,8 @@ class AuthModule extends AppModule {
   @override
   Injector? get services {
     return super.services!
-      ..add(AuthRepository.new)
-      ..add(AuthBloc.new)
+      ..addSingleton(AuthRepository.new)
+      ..addSingleton(AuthBloc.new)
       ..commit();
   }
 }

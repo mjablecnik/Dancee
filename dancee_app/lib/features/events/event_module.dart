@@ -12,8 +12,8 @@ class EventModule extends AppModule {
   @override
   Injector? get services {
     return super.services!
-      ..add(EventRepository.new)
-      ..add(EventListCubit.new)
+      ..addSingleton(EventRepository.new)
+      ..addSingleton(EventListCubit.new)
       ..commit();
   }
 }
