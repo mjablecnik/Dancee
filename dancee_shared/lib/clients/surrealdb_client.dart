@@ -4,7 +4,7 @@ import 'package:surrealdb/surrealdb.dart';
 export 'package:surrealdb/surrealdb.dart';
 
 class SurrealDbClient {
-  static Future<SurrealDB> init(SurrealDbConfig config) async {
+  static Future<SurrealDB> init({SurrealDbConfig config = const SurrealDbConfig()}) async {
     final db = SurrealDB(config.address);
     db.connect();
     await db.wait();
@@ -17,6 +17,6 @@ class SurrealDbClient {
   }
 
   static Future<SurrealDB> initDancee() async {
-    return init(SurrealDbConfig());
+    return init(config: SurrealDbConfig());
   }
 }

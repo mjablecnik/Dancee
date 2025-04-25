@@ -33,6 +33,31 @@ class Event extends VaderEntity with _$Event {
   Set<String> get tags => parts.fold({}, (e, r) => {...e, ...r.dances});
 
   factory Event.fromJson(Map<String, Object?> json) => _$EventFromJson(json);
+
+  Map<String, dynamic> toSurrealQl() {
+    final result = toJson();
+    result['id'] = _toSurrealUUID(result['id']);
+    result['venue'] = _toSurrealVenue(result['venue']);
+    result['start_date'] = _toSurrealDateTime(dateTimeRange.start);
+    result['end_date'] = _toSurrealDateTime(dateTimeRange.end);
+    result['date_time_range'] = null;
+
+    return result;
+  }
+
+  factory Event.fromSurrealQl(Map<String, dynamic> map) {
+    final result = map;
+    result['id'] = result['id'].split('\'')[1];
+    //result['venue'] = result['venue'].split('\'')[1];
+    //result['venue'] = Venue.fromSurrealQl(map);
+    result['date_time_range'] = {
+      'start': result['start_date'],
+      'end': result['end_date'],
+    };
+
+    print(result['venue']);
+    return Event.fromJson(result);
+  }
 }
 
 @freezed
@@ -68,19 +93,12 @@ class EventPart extends VaderEntity with _$EventPart {
   factory EventPart.fromJson(Map<String, Object?> json) => _$EventPartFromJson(json);
 }
 
-enum EventPartType { party, workshop }
+enum EventPartType { party, workshop, openLesson }
 
 String _toSurrealUUID(String uuid) => 'u\'$uuid\'';
 
+String _toSurrealDateTime(DateTime dateTime) => 'd\'${dateTime.toUtc().toIso8601String()}\'';
+
 String _toSurrealVenue(Venue venue) {
   return 'venues:u\'${venue.id}\'';
-}
-
-extension EventSerialization on Event {
-  Map<String, dynamic> toSurrealQl() {
-    final result = toJson();
-    result['id'] = _toSurrealUUID(result['id']);
-    result['venue'] = _toSurrealVenue(result['venue']);
-    return result;
-  }
 }

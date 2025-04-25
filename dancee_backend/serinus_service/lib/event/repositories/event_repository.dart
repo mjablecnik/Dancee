@@ -1,81 +1,18 @@
 import 'package:dancee_shared/clients/surrealdb_client.dart';
 import 'package:dancee_shared/entities.dart';
 import 'package:serinus/serinus.dart';
-import 'package:serinus_service/config.dart';
 import 'package:serinus_service/event/enums.dart';
 import 'package:serinus_service/core/client_factory.dart';
 import 'package:vader_core/clients/logger.dart';
-import 'package:google_geocoding_api/google_geocoding_api.dart';
 
-import 'event_queries.dart';
+import '../event_queries.dart';
+
 class EventRepository extends Provider {
   const EventRepository({required this.aiClient, required this.surrealDB});
 
   final IAiClient aiClient;
   final SurrealDB surrealDB;
 
-  Future<Venue> getVenue(Map<String, dynamic> location) async {
-    if (location['name'] != null &&
-        location['address'] != null &&
-        location['city'] != null &&
-        location['countryCode'] != null) {
-      return Venue(
-        id: Uuid().v7(),
-        name: location["name"],
-        street: location["address"],
-        number: '',
-        town: location["city"]["name"],
-        country: location["countryCode"],
-        postalCode: '',
-        coordinates: Coordinates.fromJson(location["coordinates"]),
-      );
-    } else {
-      final latitude = location['coordinates']['latitude'];
-      final longitude = location['coordinates']['longitude'];
-
-      final api = GoogleGeocodingApi(ServerConfig.googelApiKey, isLogged: false);
-      final reversedSearchResults = await api.reverse('$latitude,$longitude', language: 'en');
-      final address = reversedSearchResults.results.first.formattedAddress.split(', ');
-
-      return Venue(
-        id: Uuid().v7(),
-        name: location["name"],
-        street: address.first,
-        number: '',
-        town: address[1],
-        country: address.last,
-        postalCode: '',
-        coordinates: Coordinates.fromJson(location["coordinates"]),
-      );
-    }
-  }
-
-  Future<Event> getFbEvent(String url) async {
-    final client = ClientFactory.fbServiceClient();
-    final response = await client.get("/scrape/event?url=$url");
-
-    final payload = response.data["payload"];
-    final location = payload["location"];
-
-    final event = Event(
-      id: Uuid().v7(),
-      title: payload['name'],
-      venue: await getVenue(location),
-      dateTimeRange: DateTimeRange(
-        start: DateTime.fromMillisecondsSinceEpoch(payload["startTimestamp"] * 1000),
-        end: DateTime.fromMillisecondsSinceEpoch(payload["endTimestamp"] * 1000),
-      ),
-      timezone: payload['timezone'],
-      organizer: payload["hosts"].map((e) => e["name"]).join(" a "),
-      originalDescription: payload["description"],
-      description: "",
-      originalUrl: payload["url"],
-      info: [],
-      parts: [],
-    );
-
-    return event;
-  }
 
   Future<EventType> getEventType(Event event) async {
     final result = await aiClient.query(
@@ -138,11 +75,39 @@ class EventRepository extends Provider {
     return eventInfo;
   }
 
+  /*
+  Future<Event?> selectEvent(Event event) async {
+    final events = (await surrealDB.query(
+      r'SELECT *, venue.* FROM events WHERE original_url = $original_url FETCH venues',
+      {'original_url': event.originalUrl},
+    ) as List).first['result'] as List<dynamic>;
+
+    print(events);
+    if (events.length > 0) {
+      return Event.fromSurrealQl(events.first);
+    } else {
+      return null;
+    }
+  }
+  */
+
+  Future<bool> existsEvent(Event event) async {
+    final events = (await surrealDB.query(
+      r'SELECT *, venue.* FROM events WHERE original_url = $original_url FETCH venues',
+      {'original_url': event.originalUrl},
+    ) as List).first['result'] as List<dynamic>;
+
+    return events.length > 0;
+  }
+
   Future<bool> saveEvent(Event event) async {
-    print("Save event: ${event.title}");
-    // Fetch version information
-    final version = await surrealDB.version();
-    print('SurrealDB version: $version');
-    return true;
+    print(event.toSurrealQl());
+    try {
+      await surrealDB.create('events', event.toSurrealQl());
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 }

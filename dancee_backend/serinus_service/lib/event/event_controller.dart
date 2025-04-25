@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:serinus/serinus.dart';
 import 'package:serinus_service/core/api_response.dart';
-import 'event_service.dart';
+import 'services/event_service.dart';
 
 class EventController extends Controller {
   EventController({super.path = '/'}) {

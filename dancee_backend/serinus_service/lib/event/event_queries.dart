@@ -4,7 +4,7 @@ Z daného textu zjisti, o jaký typ taneční události se jedná.
 Výsledek chci od tebe ve validním JSON formátu s následující přesnou strukturou:
 
 {
-  "type": "party | workshop | lesson | course | festival | none"
+  "type": "party | workshop | openLesson | lesson | course | festival | none"
 }
 
 
@@ -56,7 +56,7 @@ Z následujícího textu získej informace o taneční akci a vygeneruj výstup 
     {
       "name": "string (např. 'Workshop pro začátečníky', 'Hlavní párty' – v češtině)",
       "description": "string (popisující danou část, v češtině)",
-      "type": "party | workshop",
+      "type": "party | workshop | openLesson",
       "dances": ["string (např. 'Salsa', 'Bachata'), musí začínat vždy velkým písmenem"],
       "date_time_range": {
         "start": "string (ISO 8601 UTC)",

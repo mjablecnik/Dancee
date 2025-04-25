@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:serinus/serinus.dart';
 import 'dart:convert';
 import 'package:serinus_service/config.dart';
 import 'package:vader_core/clients/logger.dart';
@@ -13,7 +14,7 @@ class ClientFactory {
   }
 }
 
-abstract class IAiClient {
+abstract class IAiClient extends Provider {
   Future<Map<String, dynamic>> query({required String rules, required String question, required String queryName});
 }
 
