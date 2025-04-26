@@ -88,7 +88,7 @@ var validateAndFormatEventProfileUrl = (url, type) => {
   return url;
 };
 var validateAndFormatEventGroupUrl = (url) => {
-  const regex = /facebook\.com\/groups\/\d+(?:\/events$)?/;
+  const regex = /facebook\.com\/groups\/[a-zA-Z0-9]+(?:\/events$)?/;
   const result = regex.test(url);
   if (!result) {
     throw new Error("Invalid Facebook group event URL");
