@@ -101,12 +101,10 @@ class EventRepository extends Provider {
   }
 
   Future<bool> saveEvent(Event event) async {
-    print(event.toSurrealQl());
     try {
       await surrealDB.create('events', event.toSurrealQl());
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
   }
