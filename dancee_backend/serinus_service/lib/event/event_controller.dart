@@ -1,13 +1,19 @@
 import 'dart:io';
 
+import 'package:dancee_shared/entities/event.dart';
 import 'package:serinus/serinus.dart';
 import 'package:serinus_service/core/api_response.dart';
 import 'package:serinus_service/core/error_service.dart';
+import 'package:serinus_service/event/repositories/event_repository.dart';
+import 'package:serinus_service/groups/groups_repository.dart';
+import 'package:vader_core/clients/logger.dart';
 import 'services/event_service.dart';
 
 class EventController extends Controller {
-  EventController({super.path = '/'}) {
-    on(Route.post('/event'), _createEvent);
+  EventController({super.path = '/event'}) {
+    on(Route.post('/'), _createEvent);
+    on(Route.get('/process'), _processEvents);
+    //on(Route.get('/list'), _listEvents);
   }
 
   Future<ApiResponse> _createEvent(RequestContext context) async {
@@ -26,5 +32,31 @@ class EventController extends Controller {
 
       return ErrorResponse.internalServerError(message: e.toString());
     }
+  }
+
+  Future<ApiResponse> _processEvents(RequestContext context) async {
+    final groupsRepository = context.use<GroupsRepository>();
+    final eventService = context.use<EventService>();
+    final errorService = context.use<ErrorService>();
+    final eventRepository = context.use<EventRepository>();
+
+    final allGroupUrls = await groupsRepository.getAllGroups();
+    print(allGroupUrls);
+
+    for (final groupUrl in allGroupUrls) {
+      final eventLinks = await eventService.getEventListUrlFromFacebook(groupUrl);
+      for (final eventLink in eventLinks) {
+        try {
+          if (await eventRepository.existsEventByOriginalUrl(eventLink)) continue;
+          final Event event = await eventService.getEvent(eventLink);
+          await eventService.createEvent(event);
+        } catch (e) {
+          await errorService.createError(eventLink, e.toString());
+          logger.error("Cannot save event: " + eventLink);
+          logger.error(e.toString());
+        }
+      }
+    }
+    return SuccessResponse.ok();
   }
 }

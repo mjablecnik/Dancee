@@ -25,17 +25,18 @@ class AppModule extends Module {
         imports: [GroupsModule()],
         providers: [
           Provider.deferred(
-            () async => ErrorService(await SurrealDbClient.init()),
+            () async => EventRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.init()),
             inject: [],
-            type: ErrorService,
+            type: EventRepository,
           ),
+          Provider.deferred(() async => ErrorService(await SurrealDbClient.init()), inject: [], type: ErrorService),
           Provider.deferred(
-            () async => EventService(
-              EventRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.init()),
+            (eventRepository) async => EventService(
+              eventRepository,
               VenueService(VenueRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.init())),
               ErrorService(await SurrealDbClient.init()),
             ),
-            inject: [],
+            inject: [EventRepository],
             type: EventService,
           ),
         ],
