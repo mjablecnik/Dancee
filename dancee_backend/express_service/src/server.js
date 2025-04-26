@@ -23,8 +23,10 @@ app.get('/scrape/event/list', async (req, res) => {
   const url = req.query.url;
   try {
     const eventData = await scrapeFbEventList(url);
+    console.log(eventData);
     res.json({ payload: eventData });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: 'Došlo k chybě při získávání dat' });
   }
 });

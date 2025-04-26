@@ -91,6 +91,15 @@ class EventRepository extends Provider {
   }
   */
 
+  Future<bool> existsEventByOriginalUrl(String originalUrl) async {
+    final events = (await surrealDB.query(
+      r'SELECT *, venue.* FROM events WHERE original_url = $original_url FETCH venues',
+      {'original_url': originalUrl},
+    ) as List).first['result'] as List<dynamic>;
+
+    return events.length > 0;
+  }
+
   Future<bool> existsEvent(Event event) async {
     final events = (await surrealDB.query(
       r'SELECT *, venue.* FROM events WHERE original_url = $original_url FETCH venues',

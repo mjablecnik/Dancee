@@ -33,6 +33,7 @@ class AppModule extends Module {
             () async => EventService(
               EventRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.init()),
               VenueService(VenueRepository(aiClient: AiClient(), surrealDB: await SurrealDbClient.init())),
+              ErrorService(await SurrealDbClient.init()),
             ),
             inject: [],
             type: EventService,

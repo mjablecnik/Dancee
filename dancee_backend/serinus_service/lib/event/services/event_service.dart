@@ -1,18 +1,21 @@
 import 'package:dancee_shared/entities.dart';
 import 'package:serinus/serinus.dart';
 import 'package:serinus_service/core/client_factory.dart';
+import 'package:serinus_service/core/error_service.dart';
 import 'package:serinus_service/event/enums.dart';
 import 'package:serinus_service/event/repositories/event_repository.dart';
 import 'package:serinus_service/event/services/venue_service.dart';
 import 'package:vader_core/clients/logger.dart';
 
 class EventService extends Provider {
-  const EventService(this.eventRepository, this.venueService);
+  const EventService(this.eventRepository, this.venueService, this.errorService);
 
   final EventRepository eventRepository;
   final VenueService venueService;
+  final ErrorService errorService;
 
   Future<Event> getEvent(String url) async {
+    logger.info("Downloading: $url");
     final Event event = await getEventFromFacebook(url);
     final EventType eventType = await eventRepository.getEventType(event);
 
@@ -69,11 +72,17 @@ class EventService extends Provider {
   }
 
   Future<List<dynamic>> getEventListUrlFromFacebook(String url) async {
-    final client = ClientFactory.fbServiceClient();
-    final response = await client.get("/scrape/event/list?url=$url");
+    try {
+      logger.info(url);
+      final client = ClientFactory.fbServiceClient();
+      final response = await client.get("/scrape/event/list?url=$url");
 
-    final payload = response.data["payload"];
-    return payload.map((e) => e["url"]).toList();
+      final payload = response.data["payload"];
+      return payload.map((e) => e["url"]).toList();
+    } catch (e) {
+      await errorService.createError(url, "Cannot obtain event list.");
+      return [];
+    }
   }
 
   Future<bool> createEvent(Event event) async {
