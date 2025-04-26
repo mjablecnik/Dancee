@@ -68,6 +68,14 @@ class EventService extends Provider {
     return event;
   }
 
+  Future<List<dynamic>> getEventListUrlFromFacebook(String url) async {
+    final client = ClientFactory.fbServiceClient();
+    final response = await client.get("/scrape/event/list?url=$url");
+
+    final payload = response.data["payload"];
+    return payload.map((e) => e["url"]).toList();
+  }
+
   Future<bool> createEvent(Event event) async {
     final venueRepository = venueService.venueRepository;
     final Venue? venueFromDB = await venueRepository.selectVenue(event.venue);
