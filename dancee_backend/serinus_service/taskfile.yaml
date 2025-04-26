@@ -44,7 +44,13 @@ tasks:
   deploy:
     cmd: "flyctl deploy"
     desc: "Deploy service to Fly.io"
+    preconditions:
+      - task: build
 
   launch:
     cmd: "flyctl launch"
     desc: "Initialize service to Fly.io"
+
+  build:
+    cmd: "dart compile exe lib/main.dart -o bin/server -D FLAVOR=prod"
+    desc: "Compile Dart server"
