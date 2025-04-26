@@ -4,7 +4,7 @@ Z daného textu zjisti, o jaký typ taneční události se jedná.
 Výsledek chci od tebe ve validním JSON formátu s následující přesnou strukturou:
 
 {
-  "type": "party | workshop | openLesson | lesson | course | festival | none"
+  "type": "party | workshop | openLesson | lesson | course | festival | holiday | none"
 }
 
 
@@ -14,6 +14,7 @@ workshop: Akce, kam člověk může přijít a naučit se něco nového ohledně
 lesson: Jednorázová taneční lekce která může být třeba na jednu hodinu a člověk se tam naučí něco nového podobně jako na workshopu.
 course: Pravidelné opakování tanečních lekcí každý týden v určitý den a čas po určitou dobu (většinou na 2-3 měsíce).
 festival: Velká několikadenní událost kam se sjede velké množství lidí na rúzné workshopy, lekce a taneční party.
+holiday: Několikadenní událost kam se sjede určité množství lidí aby spolu strávili dovolenou a zároveň si zatancovali.
 none: Nejedná se o žádnou výše zmíněnou taneční událost kam člověk přijde a může tancovat anebo se něco nového naučit ohledně tancování.
 """;
 

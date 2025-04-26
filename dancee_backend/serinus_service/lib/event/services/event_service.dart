@@ -19,7 +19,7 @@ class EventService extends Provider {
     final Event event = await getEventFromFacebook(url);
     final EventType eventType = await eventRepository.getEventType(event);
 
-    if (![EventType.party, EventType.workshop, EventType.festival].contains(eventType)) {
+    if (![EventType.party, EventType.workshop, EventType.festival, EventType.holiday].contains(eventType)) {
       logger.debug('Event type is: $eventType');
       throw Exception('Event type \'$eventType\' is not supported');
     } else {
