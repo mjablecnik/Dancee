@@ -71,7 +71,10 @@ class AiClient extends IAiClient {
 
     final data = response.data;
     logger.info(queryName + ': ' + data['usage'].toString());
-    final String content = data['choices'][0]['message']['content'];
+    //logger.info(queryName + ': ' + data['choices'][0]['message']['content']);
+    //print(queryName + ': ' + data['choices'][0]['message']['content']);
+
+    final String content = data['choices'][0]['message']['content'].replaceAll('\\\n', '\\n');
 
     return jsonDecode(content.replaceAll('```', ''));
   }
