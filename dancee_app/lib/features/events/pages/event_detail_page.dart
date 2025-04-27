@@ -3,6 +3,7 @@ import 'package:dancee_shared/utils.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_shared/entities/event.dart';
 import 'package:flutter/material.dart' hide Chip;
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vader_app/vader_app.dart';
 
@@ -86,7 +87,13 @@ class _EventDetailSection extends StatelessWidget {
             Label(icon: AppIcons.clock.svg, text: event.dateTimeRange.formatString()),
           ],
         ),
-        Label(icon: AppIcons.point.svg, text: event.venue!.format("\n")),
+        GestureDetector(
+          child: Label(icon: AppIcons.point.svg, text: event.venue!.format("\n")),
+          onTap: () {
+            MapsLauncher.launchQuery(event.venue!.format());
+            //MapsLauncher.launchCoordinates(event.venue!.coordinates.latitude, event.venue!.coordinates.longitude);
+          },
+        ),
         Row(
           children: [
             AppIcons.dancers.svg,
