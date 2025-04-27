@@ -28,7 +28,7 @@ class EventListPage extends StatelessWidget {
       title: i18n.events.list.title,
       child: Column(
         children: [
-          ActionSection(),
+          //ActionSection(),
           BlocBuilder<EventListCubit, EventListState>(
             bloc: injector.use<EventListCubit>(),
             builder: (context, state) {

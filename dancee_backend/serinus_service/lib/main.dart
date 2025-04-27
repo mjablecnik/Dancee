@@ -15,6 +15,7 @@ Future<void> main(List<String> arguments) async {
   if (flavor == 'devel') await HotReloader.create(debounceInterval: Duration(milliseconds: 300));
 
   final app = await serinus.createApplication(entrypoint: AppModule(), host: '0.0.0.0', port: 8000);
+  app.use(CorsHook());
   await app.serve();
 }
 

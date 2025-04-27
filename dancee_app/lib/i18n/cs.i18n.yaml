@@ -39,7 +39,7 @@ events:
     title: "Detail události"
     describe: "Popis"
     attend: "Zúčastním se"
-    links: "Odkazy"
+    links: "Další info"
     program:
       title: "Program"
       no_more_info: "Žádné další informace"

@@ -1,22 +1,19 @@
-import 'package:dancee_shared/clients/surrealdb_client.dart';
+import 'package:dancee_app/config.dart';
 import 'package:dancee_shared/entities.dart';
+import 'package:dio/dio.dart';
 
 class EventRepository {
-  EventRepository({required this.db});
 
-  final SurrealDB db;
-
-  Future getAllEvents() async {
-    var result = await db.query("SELECT *, venues.* FROM events");
-    print(result);
-  }
 
   Future<List<Event>> getEvents() async {
-    // final response = await httpClient.request(
-    //   path: '/events',
-    //   method: HttpMethod.get,
-    // );
-    // return [...response.data["events"].map((e) => Event.fromJson(e))];
-    return [];
+    final Dio _dio = Dio(
+      BaseOptions(
+        baseUrl: AppConfig().apiUrl,
+        connectTimeout: const Duration(seconds: 5),
+        headers: {'Content-Type': 'application/json'},
+      ),
+    );
+    final response = await _dio.get('/event/list');
+    return [...response.data["data"].map((e) => Event.fromJson(e))];
   }
 }

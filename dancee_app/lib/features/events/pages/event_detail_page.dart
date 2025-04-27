@@ -3,6 +3,7 @@ import 'package:dancee_shared/utils.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_shared/entities/event.dart';
 import 'package:flutter/material.dart' hide Chip;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vader_app/vader_app.dart';
 
 part 'event_detail_page.g.dart';
@@ -44,14 +45,20 @@ class EventDetailPage extends StatelessWidget {
                       title: i18n.events.detail.describe,
                       child: Text(event.description, style: TextStyles.smallBodyTextStyle),
                     ),
-                    _ProgramSection(programList: event.parts),
                     _InfoSection(infoList: event.info),
+                    _ProgramSection(programList: event.parts),
                   ],
                 ),
               ),
             ),
           ),
-          PrimaryButton(text: i18n.events.detail.attend, size: ButtonSize.large),
+          PrimaryButton(
+            text: "Zobrazit akci",
+            size: ButtonSize.large,
+            onTap: () {
+              launchUrl(Uri.parse(event.originalUrl));
+            },
+          ),
         ],
       ),
     );
@@ -83,7 +90,11 @@ class _EventDetailSection extends StatelessWidget {
         Row(
           children: [
             AppIcons.dancers.svg,
-            SizedBox(width: 280, height: 36, child: ChipList(chips: [Chip(text: "Salsa"), Chip(text: "Bachata")])),
+            SizedBox(
+              width: 280,
+              height: 36,
+              child: ChipList(chips: [for (final dance in event.tags) Chip(text: dance)]),
+            ),
           ],
         ),
       ],
@@ -115,9 +126,11 @@ class _ProgramSection extends StatelessWidget {
                   ...program.lectors != null && program.lectors!.isNotEmpty
                       ? {i18n.events.detail.program.lectors: program.lectors!.join(', ')}
                       : {},
-                  ...program.djs != null && program.djs!.isNotEmpty ? {i18n.events.detail.program.dj: program.djs!.join(', ')} : {},
+                  ...program.djs != null && program.djs!.isNotEmpty
+                      ? {i18n.events.detail.program.dj: program.djs!.join(', ')}
+                      : {},
                 },
-                isOpen: false,
+                isOpen: programList.length <= 1,
               ),
           ],
         ),
@@ -133,6 +146,7 @@ class _InfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (infoList.isEmpty) return SizedBox.shrink();
     return _SectionLayout(
       title: i18n.events.detail.links,
       child: Column(
@@ -147,7 +161,11 @@ class _InfoSection extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child:
                         info.type == EventInfoType.url
-                            ? LinkButton(text: info.value, textStyle: LinkTextStyles.smallLinkTextStyle)
+                            ? LinkButton(
+                              text: info.value,
+                              textStyle: LinkTextStyles.smallLinkTextStyle,
+                              onTap: () => launchUrl(Uri.parse(info.value)),
+                            )
                             : Text(info.value, style: TextStyles.smallBodyTextStyle),
                   ),
                 ),

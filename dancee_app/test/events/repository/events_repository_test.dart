@@ -9,7 +9,7 @@ Future<void> main() async {
   await VaderAppTester(modules: [AppModule(), EventModule()]).init();
   final eventRepository = injector.use<EventRepository>();
 
-  test('Select all events', () async {
-    await eventRepository.getAllEvents();
-  });
+  //test('Select all events', () async {
+  //  await eventRepository.getAllEvents();
+  //});
 }

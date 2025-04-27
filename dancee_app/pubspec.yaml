@@ -25,9 +25,11 @@ dependencies:
     path: ../dancee_design
 
   # Package dependencies:
+  dio: ^5.8.0+1
   uuid: ^4.5.1
   slang: ^4.5.0
   slang_flutter: ^4.5.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
