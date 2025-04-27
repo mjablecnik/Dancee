@@ -38,3 +38,17 @@ tasks:
   watch-slang:
     cmd: "fvm dart run slang watch"
     desc: "Generate translation files"
+
+  deploy:
+    cmd: "flyctl deploy"
+    desc: "Deploy service to Fly.io"
+    preconditions:
+      - task: build
+
+  launch:
+    cmd: "flyctl launch"
+    desc: "Initialize service to Fly.io"
+
+  build:
+    cmd: "flutter build web --release"
+    desc: "Build web app"
