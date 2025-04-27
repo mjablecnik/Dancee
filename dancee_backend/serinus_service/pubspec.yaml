@@ -11,7 +11,7 @@ dependencies:
   vader_core: ^0.4.2
   google_geocoding_api: ^1.5.2
   dancee_shared:
-    path: ./dancee_shared
+    path: ../../dancee_shared
 
 dev_dependencies:
   freezed: ^2.5.7

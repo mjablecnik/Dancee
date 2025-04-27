@@ -13,7 +13,7 @@ class EventController extends Controller {
   EventController({super.path = '/event'}) {
     on(Route.post('/'), _createEvent);
     on(Route.get('/process'), _processEvents);
-    //on(Route.get('/list'), _listEvents);
+    on(Route.get('/list'), _listEvents);
   }
 
   Future<ApiResponse> _createEvent(RequestContext context) async {
@@ -30,6 +30,17 @@ class EventController extends Controller {
       final errorService = context.use<ErrorService>();
       await errorService.createError(url, e.toString());
 
+      return ErrorResponse.internalServerError(message: e.toString());
+    }
+  }
+
+  Future<ApiResponse> _listEvents(RequestContext context) async {
+    try {
+      final eventRepository = context.use<EventRepository>();
+      context.res.contentType = ContentType.json;
+      final allEvents = await eventRepository.selectAllEvents();
+      return SuccessResponse.ok(data: allEvents);
+    } catch (e) {
       return ErrorResponse.internalServerError(message: e.toString());
     }
   }

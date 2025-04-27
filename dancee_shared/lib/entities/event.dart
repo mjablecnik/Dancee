@@ -18,7 +18,7 @@ class Event extends VaderEntity with _$Event {
     @JsonKey(name: "original_description") required String originalDescription,
     @JsonKey(name: "original_url") required String originalUrl,
     required String organizer,
-    required Venue venue,
+    required Venue? venue,
     @JsonKey(
       fromJson: DateTimeRangeSerialization.fromJsonDateTimeRange,
       toJson: DateTimeRangeSerialization.toJsonDateTimeRange,
@@ -41,7 +41,6 @@ class Event extends VaderEntity with _$Event {
     result['start_date'] = _toSurrealDateTime(dateTimeRange.start);
     result['end_date'] = _toSurrealDateTime(dateTimeRange.end);
     result['created_at'] = _toSurrealDateTime(DateTime.now());
-    //result['date_time_range'] = null;
 
     return result;
   }
@@ -49,15 +48,14 @@ class Event extends VaderEntity with _$Event {
   factory Event.fromSurrealQl(Map<String, dynamic> map) {
     final result = map;
     result['id'] = result['id'].split('\'')[1];
-    //result['venue'] = result['venue'].split('\'')[1];
-    //result['venue'] = Venue.fromSurrealQl(map);
     result['date_time_range'] = {
       'start': result['start_date'],
       'end': result['end_date'],
     };
 
-    print(result['venue']);
-    return Event.fromJson(result);
+    final venue = Venue.fromSurrealQl(result['venue']);
+
+    return Event.fromJson(result).copyWith(venue: venue);
   }
 }
 

@@ -117,13 +117,13 @@ void main() {
     });
 
     test('Venue should format address correctly', () {
-      final venue = exampleEvent.venue;
+      final venue = exampleEvent.venue!;
       expect(venue.format(), equals('123 Dance Street\u00A01, 12345\u00A0City'));
       expect(venue.format(' - '), equals('123 Dance Street\u00A01 - 12345\u00A0City'));
     });
 
     test('Venue toSurrealQl() should return valid SurrealQL representation', () {
-      final venue = exampleEvent.venue;
+      final venue = exampleEvent.venue!;
       final surrealQl = venue.toSurrealQl();
 
       expect(surrealQl, isA<Map<String, dynamic>>());

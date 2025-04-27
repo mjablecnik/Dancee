@@ -87,10 +87,10 @@ class EventService extends Provider {
 
   Future<bool> createEvent(Event event) async {
     final venueRepository = venueService.venueRepository;
-    final Venue? venueFromDB = await venueRepository.selectVenue(event.venue);
+    final Venue? venueFromDB = await venueRepository.selectVenue(event.venue!);
 
     if (venueFromDB == null) {
-      await venueRepository.saveVenue(event.venue);
+      await venueRepository.saveVenue(event.venue!);
     } else {
       event = event.copyWith(venue: venueFromDB);
     }

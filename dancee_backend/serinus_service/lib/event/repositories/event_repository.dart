@@ -91,6 +91,14 @@ class EventRepository extends Provider {
   }
   */
 
+  Future<List<Event>> selectAllEvents() async {
+    final events = (await surrealDB.query(
+      r'SELECT *, venue.* FROM events WHERE end_date > time::now() FETCH venues',
+    ) as List).first['result'] as List<dynamic>;
+
+    return events.map((e) => Event.fromSurrealQl(e)).toList();
+  }
+
   Future<bool> existsEventByOriginalUrl(String originalUrl) async {
     final events = (await surrealDB.query(
       r'SELECT *, venue.* FROM events WHERE original_url = $original_url FETCH venues',

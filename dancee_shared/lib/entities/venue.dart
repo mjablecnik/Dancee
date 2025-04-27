@@ -34,7 +34,7 @@ class Venue extends VaderEntity with _$Venue {
     final point = map['coordinates']['coordinates'] as List<dynamic>;
     final result = map;
     result['id'] = map['id'].split('\'')[1];
-    result['coordinates'] = {'latitude': point[1], 'longitude': point[0]};
+    result['coordinates'] = {"latitude": point[1], "longitude": point[0]};
     return Venue.fromJson(result);
   }
 }
