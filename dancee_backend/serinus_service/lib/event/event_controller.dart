@@ -56,6 +56,7 @@ class EventController extends Controller {
           logger.error(e.toString());
         }
       }
+      await groupsRepository.updateGroup(groupUrl);
     }
     return SuccessResponse.ok();
   }
