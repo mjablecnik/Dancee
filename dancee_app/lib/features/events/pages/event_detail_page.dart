@@ -79,7 +79,7 @@ class _EventDetailSection extends StatelessWidget {
             Label(icon: AppIcons.clock.svg, text: event.dateTimeRange.formatString()),
           ],
         ),
-        Label(icon: AppIcons.point.svg, text: event.venue.format("\n")),
+        Label(icon: AppIcons.point.svg, text: event.venue!.format("\n")),
         Row(
           children: [
             AppIcons.dancers.svg,

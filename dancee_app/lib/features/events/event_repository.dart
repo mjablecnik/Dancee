@@ -18,4 +18,5 @@ class EventRepository {
     // );
     // return [...response.data["events"].map((e) => Event.fromJson(e))];
     return [];
+  }
 }

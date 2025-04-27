@@ -59,7 +59,7 @@ class EventList extends StatelessWidget {
         return EventCard(
           width: double.infinity,
           title: event.title,
-          place: event.venue.name,
+          place: event.venue!.name,
           since: event.dateTimeRange.start,
           until: event.dateTimeRange.end,
           style: EventCardStyle(decoration: BoxDecoration(color: index % 2 == 0 ? AppColors.white : AppColors.blue200)),
