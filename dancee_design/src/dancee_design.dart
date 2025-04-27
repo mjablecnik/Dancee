@@ -5,5 +5,5 @@ import 'package:vader_design/vader_design.dart';
 
 class DanceeTheme extends VaderTheme {
   @override
-  Map<String, ThemeData> get themes => {'light': lightTheme, 'dark': darkTheme};
+  Map<String, ThemeData> get themes => {'light': lightTheme, 'dark': lightTheme};
 }
