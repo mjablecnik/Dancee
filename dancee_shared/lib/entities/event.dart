@@ -40,6 +40,7 @@ class Event extends VaderEntity with _$Event {
     result['venue'] = _toSurrealVenue(result['venue']);
     result['start_date'] = _toSurrealDateTime(dateTimeRange.start);
     result['end_date'] = _toSurrealDateTime(dateTimeRange.end);
+    result['created_at'] = _toSurrealDateTime(DateTime.now());
     //result['date_time_range'] = null;
 
     return result;
