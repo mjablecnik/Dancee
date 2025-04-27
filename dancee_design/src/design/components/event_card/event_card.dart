@@ -8,6 +8,7 @@ class EventCard extends StatelessWidget {
     required this.place,
     required this.since,
     required this.until,
+    required this.weekDay,
     this.width = 400,
     this.height = 122,
     this.chips = const [],
@@ -22,6 +23,7 @@ class EventCard extends StatelessWidget {
   final double height;
   final DateTime since;
   final DateTime until;
+  final String weekDay;
   final bool tooMuchInfo;
   final List<Chip> chips;
   final GestureTapCallback? onTap;
@@ -41,11 +43,21 @@ class EventCard extends StatelessWidget {
               '${since.day}. ${since.month}.',
               style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 19, wordSpacing: -2),
             ),
+            //Text(
+            //  since.year.toString(),
+            //  style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 15),
+            //),
+            SizedBox(height: 2),
             Text(
-              since.year.toString(),
-              style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 15),
+              "($weekDay)",
+              style: TextStyle(
+                fontFamily: AppFonts.inter,
+                fontWeight: FontWeight.w500,
+                color: AppColors.grey700,
+                fontSize: 12,
+              ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 8),
             Text(
               'Od: ${since.hour}:${since.minute < 10 ? '00' : since.minute}',
               style: TextStyle(
@@ -56,7 +68,7 @@ class EventCard extends StatelessWidget {
               ),
             ),
             Text(
-              'Do: ${since.hour}:${since.minute < 10 ? '00' : since.minute}',
+              'Do: ${until.hour}:${until.minute < 10 ? '00' : until.minute}',
               style: TextStyle(
                 fontFamily: AppFonts.inter,
                 fontWeight: FontWeight.w400,
@@ -133,7 +145,6 @@ class EventCard extends StatelessWidget {
           LinkButton(
             text: "Detail",
             padding: EdgeInsets.only(right: 12),
-            onTap: () {},
             leadingIcon: false,
             icon: Icon(CupertinoIcons.right_chevron, size: 19, color: AppColors.grey400.withAlpha(200)),
             textStyle: context.designTheme.elementsStyle.buttonsStyle.linkButtonStyle.textStyle.copyWith(

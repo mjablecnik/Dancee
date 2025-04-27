@@ -1,6 +1,9 @@
+library;
 import 'package:date_time/date_time.dart';
 
 String _formatTime(DateTime dt) => "${dt.hour.toString()}:${dt.minute.toString().padLeft(2, '0')}";
+
+final weekDays = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
 
 extension DateTimeExtension on DateTime {
   String formatTimeString() => _formatTime(toLocal());

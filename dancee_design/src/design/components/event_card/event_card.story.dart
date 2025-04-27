@@ -30,6 +30,7 @@ eventCardStory(BuildContext context) {
           place: placeKnob(context),
           since: DateTime(2025, 12, 10, 20, 0, 0),
           until: DateTime(2025, 12, 11, 1, 0, 0),
+          weekDay: "Monday",
           onTap: onTap,
           style: EventCardStyle(
             decoration: BoxDecoration(
@@ -67,6 +68,7 @@ eventCardListStory(BuildContext context) {
                 color: AppColors.white,
               ),
             ),
+            weekDay: "Monday",
             tooMuchInfo: true,
             chips: [
               Chip(text: 'Salsa'),
@@ -81,6 +83,7 @@ eventCardListStory(BuildContext context) {
             since: DateTime(2025, 12, 10, 20, 0, 0),
             until: DateTime(2025, 12, 11, 1, 0, 0),
             onTap: onTap,
+            weekDay: "Monday",
             chips: [
               Chip(text: 'Zouk'),
             ],
@@ -90,6 +93,7 @@ eventCardListStory(BuildContext context) {
             place: placeKnob(context),
             since: DateTime(2025, 12, 10, 20, 0, 0),
             until: DateTime(2025, 12, 11, 1, 0, 0),
+            weekDay: "Monday",
             onTap: onTap,
             style: EventCardStyle(
               decoration: BoxDecoration(
@@ -102,6 +106,7 @@ eventCardListStory(BuildContext context) {
             place: placeKnob(context),
             since: DateTime(2025, 12, 10, 20, 0, 0),
             until: DateTime(2025, 12, 11, 1, 0, 0),
+            weekDay: "Monday",
             onTap: onTap,
             chips: [
               Chip(text: 'Salsa'),

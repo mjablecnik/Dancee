@@ -163,6 +163,7 @@ class _InfoSection extends StatelessWidget {
             Row(
               children: [
                 SizedBox(width: 100, child: Text("${info.key}:", style: TextStyles.smallLabelTextStyle)),
+                Spacer(),
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerLeft,

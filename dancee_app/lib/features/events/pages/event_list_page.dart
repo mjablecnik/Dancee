@@ -2,6 +2,7 @@ import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_app/features/events/logic/event_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
 import 'package:dancee_shared/entities/event.dart';
+import 'package:dancee_shared/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:vader_app/vader_app.dart';
@@ -65,6 +66,7 @@ class EventList extends StatelessWidget {
           style: EventCardStyle(decoration: BoxDecoration(color: index % 2 == 0 ? AppColors.white : AppColors.blue200)),
           tooMuchInfo: event.tags.length >= 3 && event.title.length > 24,
           chips: event.tags.map((t) => Chip(text: t)).toList(),
+          weekDay: weekDays[event.dateTimeRange.start.weekday - 1],
           onTap: () async {
             //await injector.use<EventRepository>().getAllEvents();
             EventDetailRoute(event).push(context);
