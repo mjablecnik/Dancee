@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:date_time/date_time.dart';
 
 String _formatTime(DateTime dt) => "${dt.hour.toString()}:${dt.minute.toString().padLeft(2, '0')}";
 
 extension DateTimeExtension on DateTime {
-  String formatTimeString() => _formatTime(this);
+  String formatTimeString() => _formatTime(toLocal());
 
   String formatCzechDate() {
     const List<String> czechMonths = [
@@ -38,9 +36,9 @@ extension DateTimeExtension on DateTime {
 }
 
 extension DateTimeRangeExtension on DateTimeRange {
-  String formatString() => "${_formatTime(start)} - ${_formatTime(end)}";
+  String formatString() => "${_formatTime(start.toLocal())} - ${_formatTime(end.toLocal())}";
 
-  String formatCzechRange() => "Od ${_formatTime(start)} do ${_formatTime(end)}";
+  String formatCzechRange() => "Od ${_formatTime(start.toLocal())} do ${_formatTime(end.toLocal())}";
 }
 
 extension DateTimeRangeSerialization on DateTimeRange {

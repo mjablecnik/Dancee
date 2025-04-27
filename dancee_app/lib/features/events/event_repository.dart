@@ -3,8 +3,6 @@ import 'package:dancee_shared/entities.dart';
 import 'package:dio/dio.dart';
 
 class EventRepository {
-
-
   Future<List<Event>> getEvents() async {
     final Dio _dio = Dio(
       BaseOptions(
@@ -14,6 +12,8 @@ class EventRepository {
       ),
     );
     final response = await _dio.get('/event/list');
-    return [...response.data["data"].map((e) => Event.fromJson(e))];
+    return [
+      ...response.data["data"].map((e) => Event.fromJson(e)),
+    ];
   }
 }
