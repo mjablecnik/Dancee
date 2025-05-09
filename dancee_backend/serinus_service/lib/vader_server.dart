@@ -20,11 +20,6 @@ class VaderServer {
 
     for (VaderModule module in modules) {
       final services = module.services;
-      //while (!module.isReady) {
-      //  print(module.isReady);
-      //  print(module.runtimeType);
-      //  await Future.delayed(Duration(milliseconds: 100));
-      //}
       injector.addInjector(services ?? Injector());
       serinusModules.add(_SerinusModule(controllers: module.controllers, middlewares: module.middlewares));
     }

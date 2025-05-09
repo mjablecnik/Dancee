@@ -6,6 +6,7 @@ import 'package:serinus_service/core/api_response.dart';
 import 'package:serinus_service/core/error_service.dart';
 import 'package:serinus_service/event/repositories/event_repository.dart';
 import 'package:serinus_service/groups/groups_repository.dart';
+import 'package:serinus_service/vader_server.dart';
 import 'package:vader_core/clients/logger.dart';
 import 'services/event_service.dart';
 
@@ -18,7 +19,7 @@ class EventController extends Controller {
 
   Future<ApiResponse> _createEvent(RequestContext context) async {
     final url = context.body.formData!.fields['url'] as String;
-    final eventService = context.use<EventService>();
+    final eventService = injector.use<EventService>();
     context.res.contentType = ContentType.json;
 
     try {
@@ -27,7 +28,7 @@ class EventController extends Controller {
 
       return SuccessResponse.ok(data: event.toJson());
     } catch (e) {
-      final errorService = context.use<ErrorService>();
+      final errorService = injector.use<ErrorService>();
       await errorService.createError(url, e.toString());
 
       return ErrorResponse.internalServerError(message: e.toString());
@@ -36,7 +37,7 @@ class EventController extends Controller {
 
   Future<ApiResponse> _listEvents(RequestContext context) async {
     try {
-      final eventRepository = context.use<EventRepository>();
+      final eventRepository = injector.use<EventRepository>();
       context.res.contentType = ContentType.json;
       final allEvents = await eventRepository.selectAllEvents();
       return SuccessResponse.ok(data: allEvents);
@@ -46,10 +47,10 @@ class EventController extends Controller {
   }
 
   Future<ApiResponse> _processEvents(RequestContext context) async {
-    final groupsRepository = context.use<GroupsRepository>();
-    final eventService = context.use<EventService>();
-    final errorService = context.use<ErrorService>();
-    final eventRepository = context.use<EventRepository>();
+    final groupsRepository = injector.use<GroupsRepository>();
+    final eventService = injector.use<EventService>();
+    final errorService = injector.use<ErrorService>();
+    final eventRepository = injector.use<EventRepository>();
 
     final allGroupUrls = await groupsRepository.getAllGroups();
     print(allGroupUrls);

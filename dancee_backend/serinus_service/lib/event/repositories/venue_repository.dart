@@ -14,7 +14,7 @@ import '../event_queries.dart';
 class VenueRepository extends Provider {
   const VenueRepository({required this.aiClient, required this.surrealDB});
 
-  final IAiClient aiClient;
+  final AiClient aiClient;
   final SurrealDB surrealDB;
 
   Future<Venue?> selectVenue(Venue venue) async {

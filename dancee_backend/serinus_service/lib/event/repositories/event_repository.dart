@@ -10,7 +10,7 @@ import '../event_queries.dart';
 class EventRepository extends Provider {
   const EventRepository({required this.aiClient, required this.surrealDB});
 
-  final IAiClient aiClient;
+  final AiClient aiClient;
   final SurrealDB surrealDB;
 
 
