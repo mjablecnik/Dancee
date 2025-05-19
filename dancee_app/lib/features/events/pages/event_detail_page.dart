@@ -125,11 +125,11 @@ class _ProgramSection extends StatelessWidget {
           children: [
             for (final program in programList)
               EventDetailAccordion(
-                time: program.dateTimeRange.start.formatTimeString(),
+                time: program.dateTimeRange.start.formatTimeString(isLocal: true),
                 title: program.name,
                 description: program.description ?? i18n.events.detail.program.noMoreInfo,
                 info: {
-                  i18n.events.detail.program.time: program.dateTimeRange.formatString(),
+                  i18n.events.detail.program.time: program.dateTimeRange.formatString(isLocal: true),
                   ...program.lectors != null && program.lectors!.isNotEmpty
                       ? {i18n.events.detail.program.lectors: program.lectors!.join(', ')}
                       : {},

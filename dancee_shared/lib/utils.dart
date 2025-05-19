@@ -1,4 +1,5 @@
 library;
+
 import 'package:date_time/date_time.dart';
 
 String _formatTime(DateTime dt) => "${dt.hour.toString()}:${dt.minute.toString().padLeft(2, '0')}";
@@ -6,7 +7,7 @@ String _formatTime(DateTime dt) => "${dt.hour.toString()}:${dt.minute.toString()
 final weekDays = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
 
 extension DateTimeExtension on DateTime {
-  String formatTimeString() => _formatTime(toLocal());
+  String formatTimeString({bool isLocal = false}) => _formatTime(isLocal ? this : toLocal());
 
   String formatCzechDate() {
     const List<String> czechMonths = [
@@ -39,9 +40,13 @@ extension DateTimeExtension on DateTime {
 }
 
 extension DateTimeRangeExtension on DateTimeRange {
-  String formatString() => "${_formatTime(start.toLocal())} - ${_formatTime(end.toLocal())}";
+  String formatString({bool isLocal = false}) {
+    return "${start.formatTimeString(isLocal: isLocal)} - ${end.formatTimeString(isLocal: isLocal)}";
+  }
 
-  String formatCzechRange() => "Od ${_formatTime(start.toLocal())} do ${_formatTime(end.toLocal())}";
+  String formatCzechRange({bool isLocal = false}) {
+    return "Od ${start.formatTimeString(isLocal: isLocal)} do ${end.formatTimeString(isLocal: isLocal)}";
+  }
 }
 
 extension DateTimeRangeSerialization on DateTimeRange {
