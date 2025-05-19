@@ -13,7 +13,6 @@ class EventModule extends AppModule {
   Injector? get services {
     return super.services!
       ..addSingleton(EventRepository.new)
-      ..addSingleton(EventListCubit.new)
-      ..commit();
+      ..addSingleton(EventListCubit.new);
   }
 }
