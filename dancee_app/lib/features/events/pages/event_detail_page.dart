@@ -1,8 +1,8 @@
 import 'package:dancee_app/i18n/translations.g.dart';
+import 'package:dancee_shared/entities.dart';
 import 'package:dancee_shared/utils.dart';
 import 'package:dancee_design/dancee_design.dart';
-import 'package:dancee_shared/entities/event.dart';
-import 'package:flutter/material.dart' hide Chip;
+import 'package:flutter/material.dart' hide Chip, DateTimeRange;
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vader_app/vader_app.dart';
@@ -71,6 +71,12 @@ class _EventDetailSection extends StatelessWidget {
 
   final Event event;
 
+  String _getEventDateString(DateTimeRange dateTimeRange) {
+    final bool isSameDay = dateTimeRange.start.day == dateTimeRange.end.day;
+    String startDate = dateTimeRange.start.formatCzechDate(isShort: !isSameDay);
+    return isSameDay ? startDate : '$startDate - ${dateTimeRange.end.formatCzechDate(isShort: true)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,7 +88,7 @@ class _EventDetailSection extends StatelessWidget {
         SizedBox(height: 8),
         Row(
           children: [
-            Label(icon: AppIcons.calendar.svg, text: event.dateTimeRange.start.formatCzechDate()),
+            Label(icon: AppIcons.calendar.svg, text: _getEventDateString(event.dateTimeRange)),
             Spacer(),
             Label(icon: AppIcons.clock.svg, text: event.dateTimeRange.formatString()),
           ],

@@ -67,15 +67,16 @@ class EventCard extends StatelessWidget {
                 fontSize: 11,
               ),
             ),
-            Text(
-              'Do: ${until.hour}:${until.minute < 10 ? '00' : until.minute}',
-              style: TextStyle(
-                fontFamily: AppFonts.inter,
-                fontWeight: FontWeight.w400,
-                color: AppColors.grey400,
-                fontSize: 11,
+            if (since.hour != until.hour)
+              Text(
+                since.hour == until.hour ? 'Do: ???' : 'Do: ${until.hour}:${until.minute.toString().padLeft(2, '0')}',
+                style: TextStyle(
+                  fontFamily: AppFonts.inter,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.grey400,
+                  fontSize: 11,
+                ),
               ),
-            ),
           ],
         ),
       ),

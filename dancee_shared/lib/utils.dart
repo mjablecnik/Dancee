@@ -9,7 +9,7 @@ final weekDays = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobo
 extension DateTimeExtension on DateTime {
   String formatTimeString({bool isLocal = false}) => _formatTime(isLocal ? this : toLocal());
 
-  String formatCzechDate() {
+  String formatCzechDate({isShort = false}) {
     const List<String> czechMonths = [
       '',
       'ledna',
@@ -26,7 +26,7 @@ extension DateTimeExtension on DateTime {
       'prosince',
     ];
 
-    return "$day. ${czechMonths[month]} $year";
+    return isShort ? "$day. $month. $year" : "$day. ${czechMonths[month]} $year";
   }
 
   String formatWithOffset() {
@@ -41,7 +41,7 @@ extension DateTimeExtension on DateTime {
 
 extension DateTimeRangeExtension on DateTimeRange {
   String formatString({bool isLocal = false}) {
-    return "${start.formatTimeString(isLocal: isLocal)} - ${end.formatTimeString(isLocal: isLocal)}";
+    return "${start.formatTimeString(isLocal: isLocal)} - ${end.hour == start.hour ? "???" : end.formatTimeString(isLocal: isLocal)}";
   }
 
   String formatCzechRange({bool isLocal = false}) {
