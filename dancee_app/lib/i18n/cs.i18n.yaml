@@ -40,6 +40,7 @@ events:
     describe: "Popis"
     attend: "Zúčastním se"
     links: "Další info"
+    show: "Zobrazit akci"
     program:
       title: "Program"
       no_more_info: "Žádné další informace"

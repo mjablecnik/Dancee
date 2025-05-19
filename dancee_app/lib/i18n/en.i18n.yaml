@@ -39,7 +39,8 @@ events:
     title: "Event detail"
     describe: "Description"
     attend: "I will attend"
-    links: "Odkazy"
+    links: "More info"
+    show: "Show event"
     program:
       title: "Program"
       no_more_info: "No more information"

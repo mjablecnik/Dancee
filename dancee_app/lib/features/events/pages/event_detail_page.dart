@@ -54,7 +54,7 @@ class EventDetailPage extends StatelessWidget {
             ),
           ),
           PrimaryButton(
-            text: "Zobrazit akci",
+            text: i18n.events.detail.show,
             size: ButtonSize.large,
             onTap: () {
               launchUrl(Uri.parse(event.originalUrl));
