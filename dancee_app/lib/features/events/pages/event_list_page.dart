@@ -65,7 +65,7 @@ class EventList extends StatelessWidget {
           until: event.dateTimeRange.end.toLocal(),
           style: EventCardStyle(decoration: BoxDecoration(color: index % 2 == 0 ? AppColors.white : AppColors.blue200)),
           tooMuchInfo: event.tags.length >= 3 && event.title.length > 24,
-          chips: event.tags.map((t) => Chip(text: t)).toList(),
+          chips: event.tags.take(4).map((t) => Chip(text: t)).toList(),
           weekDay: weekDays[event.dateTimeRange.start.weekday - 1],
           onTap: () async {
             //await injector.use<EventRepository>().getAllEvents();
