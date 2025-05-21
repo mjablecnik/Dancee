@@ -44,8 +44,8 @@ tasks:
   deploy:
     cmd: "flyctl deploy"
     desc: "Deploy service to Fly.io"
-    preconditions:
-      - task: build
+    deps:
+      - build
 
   launch:
     cmd: "flyctl launch"
