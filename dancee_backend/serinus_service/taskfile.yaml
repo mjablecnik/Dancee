@@ -52,5 +52,5 @@ tasks:
     desc: "Initialize service to Fly.io"
 
   build:
-    cmd: "dart compile exe lib/main.dart -o bin/server -D FLAVOR=prod"
+    cmd: "dart compile exe lib/main.dart --target-os=linux --target-arch=x64 -o bin/server -D FLAVOR=prod"
     desc: "Compile Dart server"
