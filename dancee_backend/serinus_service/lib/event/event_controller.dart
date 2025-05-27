@@ -55,21 +55,26 @@ class EventController extends Controller {
     final allGroupUrls = await groupsRepository.getAllGroups();
     print(allGroupUrls);
 
-    for (final groupUrl in allGroupUrls) {
-      final eventLinks = await eventService.getEventListUrlFromFacebook(groupUrl);
-      for (final eventLink in eventLinks) {
-        try {
-          if (await eventRepository.existsEventByOriginalUrl(eventLink)) continue;
-          final Event event = await eventService.getEvent(eventLink);
-          await eventService.createEvent(event);
-        } catch (e) {
-          await errorService.createError(eventLink, e.toString());
-          logger.error("Cannot save event: " + eventLink);
-          logger.error(e.toString());
+    Future.sync(() async {
+      for (final groupUrl in allGroupUrls) {
+        final eventLinks = await eventService.getEventListUrlFromFacebook(groupUrl);
+        for (final eventLink in eventLinks) {
+          try {
+            if (await eventRepository.existsEventByOriginalUrl(eventLink)) continue;
+            final Event event = await eventService.getEvent(eventLink);
+            await eventService.createEvent(event);
+          } catch (e) {
+            await errorService.createError(eventLink, e.toString());
+            logger.error("Cannot save event: " + eventLink);
+            logger.error(e.toString());
+          }
         }
+        await groupsRepository.updateGroup(groupUrl);
       }
-      await groupsRepository.updateGroup(groupUrl);
-    }
+    });
+
+    await Future.delayed(const Duration(seconds: 4));
+
     return SuccessResponse.ok();
   }
 }
