@@ -4,5 +4,5 @@ import 'package:serinus_service/groups/groups_module.dart';
 import 'package:serinus_service/vader_server.dart';
 
 Future<void> main(List<String> arguments) async {
-  await VaderServer(modules: [AppModule(), EventModule(), GroupsModule()]).run();
+  await VaderServer(modules: [AppModule(), GroupsModule(), EventModule()]).run();
 }

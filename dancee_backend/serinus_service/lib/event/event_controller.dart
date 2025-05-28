@@ -73,7 +73,7 @@ class EventController extends Controller {
       }
     });
 
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
 
     return SuccessResponse.ok();
   }
