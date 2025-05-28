@@ -24,6 +24,7 @@ class VaderServer {
       serinusModules.add(_SerinusModule(controllers: module.controllers, middlewares: module.middlewares));
     }
     injector.commit();
+    await Future.delayed(Duration(seconds: 1));
 
     final app = await serinus.createApplication(
       entrypoint: _SerinusApp(modules: serinusModules),
