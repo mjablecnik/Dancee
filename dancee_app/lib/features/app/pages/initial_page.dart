@@ -1,3 +1,5 @@
+import 'package:dancee_app/features/events/event_repository.dart';
+import 'package:dancee_app/features/events/logic/event_list_cubit.dart';
 import 'package:dancee_app/features/events/pages/event_list_page.dart';
 import 'package:dancee_app/i18n/translations.g.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,7 @@ class InitialPage extends StatelessWidget {
         padding: EdgeInsets.all(32),
         child: CircularProgressIndicator(strokeWidth: 2.0),
       ),
+      onStart: () => injector.use<EventListCubit>().init(),
       onFinish: () {
         LocaleSettings.setLocale(AppLocale.cs);
         EventListRoute().go(context);
