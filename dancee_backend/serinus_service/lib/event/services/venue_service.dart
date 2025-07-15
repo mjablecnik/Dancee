@@ -8,6 +8,10 @@ class VenueService extends Provider {
   const VenueService(this.venueRepository);
   final VenueRepository venueRepository;
 
+  Future<List<Venue>> getVenueList() async {
+    return await venueRepository.selectAllVenues();
+  }
+
   Future<Venue> createVenueByLocation(Map<String, dynamic> location) async {
     if (location['name'] != null &&
         location['address'] != null &&
