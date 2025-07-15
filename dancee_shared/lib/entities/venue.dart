@@ -14,6 +14,7 @@ class Venue extends VaderEntity with _$Venue {
     required String street,
     required String number,
     required String town,
+    required String region,
     required String country,
     @JsonKey(name: "postal_code") required String postalCode,
     required Coordinates coordinates,
