@@ -10,7 +10,11 @@ class VenueService extends Provider {
   final VenueRepository venueRepository;
 
   Future<List<Venue>> getVenueList() async {
-    return await venueRepository.selectAllVenues();
+    return venueRepository.selectAllVenues();
+  }
+  
+  Future<bool> updateVenue(Venue venue) async {
+    return venueRepository.updateVenue(venue);
   }
 
   Future<GoogleGeocodingResponse> _geoSearch(Map<String, dynamic> location) {

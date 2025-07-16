@@ -43,4 +43,13 @@ class VenueRepository extends Provider {
       return false;
     }
   }
+  
+  Future<bool> updateVenue(Venue venue) async {
+    try {
+      await surrealDB.update('venues:u\'${venue.id}\'', venue.toSurrealQl());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
