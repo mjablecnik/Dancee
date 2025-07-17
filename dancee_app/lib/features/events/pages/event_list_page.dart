@@ -44,49 +44,7 @@ class _EventListPageState extends State<EventListPage> {
       child: Column(
         children: [
           //ActionSection(),
-          Container(
-            color: AppColors.grey200,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                spacing: 16,
-                children: [
-                  Text(
-                    i18n.events.list.location,
-                    style: TextStyles.mediumTitleTextStyle.copyWith(fontWeight: FontWeight.w500),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      width: 270,
-                      child: BlocBuilder<EventAllListCubit, EventListState>(
-                        bloc: injector.use<EventAllListCubit>(),
-                        builder: (context, state) {
-                          return DropDownField(
-                            initialValue: i18n.events.list.all,
-                            items: Map.fromEntries(
-                              regionFilter.entries.map((e) {
-                                if (state is EventListStateLoadedAll) {
-                                  final numberOfEvents = injector.use<EventAllListCubit>().getNumberOfEvents(e.value);
-                                  return MapEntry(e.value, "${e.key} ($numberOfEvents)");
-                                } else {
-                                  return MapEntry(e.value, e.key);
-                                }
-                              }),
-                            ),
-                            onChange: (value) {
-                              injector.use<EventFilteredListCubit>().filterByRegion(value);
-                              if (_scrollController.hasClients) _scrollController.jumpTo(0);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          FilterSection(scrollController: _scrollController),
           Expanded(
             child: BlocBuilder<EventFilteredListCubit, EventListState>(
               bloc: injector.use<EventFilteredListCubit>(),
@@ -166,6 +124,60 @@ class ActionSection extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class FilterSection extends StatelessWidget {
+  const FilterSection({super.key, required this.scrollController});
+
+  final ScrollController scrollController;
+
+  @override
+  Widget build(BuildContext context) {
+    final eventAllListCubit = injector.use<EventAllListCubit>();
+    return Container(
+      color: AppColors.grey200,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          spacing: 16,
+          children: [
+            Text(
+              i18n.events.list.location,
+              style: TextStyles.mediumTitleTextStyle.copyWith(fontWeight: FontWeight.w500),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                width: 270,
+                child: BlocBuilder<EventAllListCubit, EventListState>(
+                  bloc: eventAllListCubit,
+                  builder: (context, state) {
+                    return DropDownField(
+                      initialValue: i18n.events.list.all,
+                      items: Map.fromEntries(
+                        regionFilter.entries.map((e) {
+                          if (state is EventListStateLoadedAll) {
+                            final numberOfEvents = eventAllListCubit.getNumberOfEvents(e.value);
+                            return MapEntry(e.value, "${e.key} ($numberOfEvents)");
+                          } else {
+                            return MapEntry(e.value, e.key);
+                          }
+                        }),
+                      ),
+                      onChange: (value) {
+                        injector.use<EventFilteredListCubit>().filterByRegion(value);
+                        if (scrollController.hasClients) scrollController.jumpTo(0);
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
