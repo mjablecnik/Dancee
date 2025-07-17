@@ -37,7 +37,7 @@ events:
       add: "Přidat událost"
     all: "Vše"
     location: "Lokalita:"
-    no_events: "Žádné události nebyly nalezeny."
+    no_events: "Nebyly nalezeny žádné události."
   detail:
     title: "Detail události"
     describe: "Popis"
