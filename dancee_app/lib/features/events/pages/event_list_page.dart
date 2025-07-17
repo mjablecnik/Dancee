@@ -1,3 +1,4 @@
+import 'package:dancee_app/features/events/logic/event_all_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_filtered_list_cubit.dart';
 import 'package:dancee_design/dancee_design.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
@@ -57,13 +58,27 @@ class _EventListPageState extends State<EventListPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: SizedBox(
-                      width: 260,
-                      child: DropDownField(
-                        initialValue: i18n.events.list.all,
-                        items: Map.fromEntries(regionFilter.entries.map((e) => MapEntry(e.value, e.key))),
-                        onChange: (value) {
-                          injector.use<EventFilteredListCubit>().filterByRegion(value);
-                          if (_scrollController.hasClients) _scrollController.jumpTo(0);
+                      width: 270,
+                      child: BlocBuilder<EventAllListCubit, EventListState>(
+                        bloc: injector.use<EventAllListCubit>(),
+                        builder: (context, state) {
+                          return DropDownField(
+                            initialValue: i18n.events.list.all,
+                            items: Map.fromEntries(
+                              regionFilter.entries.map((e) {
+                                if (state is EventListStateLoadedAll) {
+                                  final numberOfEvents = injector.use<EventAllListCubit>().getNumberOfEvents(e.value);
+                                  return MapEntry(e.value, "${e.key} ($numberOfEvents)");
+                                } else {
+                                  return MapEntry(e.value, e.key);
+                                }
+                              }),
+                            ),
+                            onChange: (value) {
+                              injector.use<EventFilteredListCubit>().filterByRegion(value);
+                              if (_scrollController.hasClients) _scrollController.jumpTo(0);
+                            },
+                          );
                         },
                       ),
                     ),

@@ -24,4 +24,12 @@ class EventAllListCubit extends Cubit<EventListState> {
       emit(EventListState.failed(e));
     }
   }
+
+  int? getNumberOfEvents(String region) {
+    if (state is EventListStateLoadedAll) {
+      final condition = region == "All" ? (a) => a.venue?.region != "Other" : (a) => a.venue?.region == region;
+      return (state as EventListStateLoadedAll).events.where(condition).length;
+    }
+    return null;
+  }
 }
