@@ -43,20 +43,22 @@ class EventCard extends StatelessWidget {
               '${since.day}. ${since.month}.',
               style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 19, wordSpacing: -2),
             ),
-            //Text(
-            //  since.year.toString(),
-            //  style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 15),
-            //),
             SizedBox(height: 2),
-            Text(
-              "($weekDay)",
-              style: TextStyle(
-                fontFamily: AppFonts.inter,
-                fontWeight: FontWeight.w500,
-                color: AppColors.grey700,
-                fontSize: 12,
+            if (since.year == DateTime.now().year)
+              Text(
+                "($weekDay)",
+                style: TextStyle(
+                  fontFamily: AppFonts.inter,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.grey700,
+                  fontSize: 12,
+                ),
+              )
+            else
+              Text(
+                since.year.toString(),
+                style: TextStyle(fontFamily: AppFonts.inter, fontWeight: FontWeight.w700, fontSize: 14),
               ),
-            ),
             SizedBox(height: 8),
             Text(
               'Od: ${since.hour}:${since.minute < 10 ? '00' : since.minute}',
