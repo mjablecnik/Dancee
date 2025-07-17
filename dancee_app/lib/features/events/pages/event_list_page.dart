@@ -1,6 +1,5 @@
 import 'package:dancee_app/features/events/logic/event_filtered_list_cubit.dart';
 import 'package:dancee_design/dancee_design.dart';
-import 'package:dancee_app/features/events/logic/event_all_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
 import 'package:dancee_shared/entities/event.dart';
 import 'package:dancee_shared/utils.dart';
@@ -21,8 +20,21 @@ class EventListRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => const EventListPage();
 }
 
-class EventListPage extends StatelessWidget {
+class EventListPage extends StatefulWidget {
   const EventListPage({super.key});
+
+  @override
+  State<EventListPage> createState() => _EventListPageState();
+}
+
+class _EventListPageState extends State<EventListPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,10 @@ class EventListPage extends StatelessWidget {
               child: Row(
                 spacing: 16,
                 children: [
-                  Text(i18n.events.list.location, style: TextStyles.mediumTitleTextStyle.copyWith(fontWeight: FontWeight.w500)),
+                  Text(
+                    i18n.events.list.location,
+                    style: TextStyles.mediumTitleTextStyle.copyWith(fontWeight: FontWeight.w500),
+                  ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: SizedBox(
@@ -46,7 +61,10 @@ class EventListPage extends StatelessWidget {
                       child: DropDownField(
                         initialValue: i18n.events.list.all,
                         items: Map.fromEntries(regionFilter.entries.map((e) => MapEntry(e.value, e.key))),
-                        onChange: (value) => injector.use<EventFilteredListCubit>().filterByRegion(value),
+                        onChange: (value) {
+                          injector.use<EventFilteredListCubit>().filterByRegion(value);
+                          if (_scrollController.hasClients) _scrollController.jumpTo(0);
+                        },
                       ),
                     ),
                   ),
@@ -61,7 +79,11 @@ class EventListPage extends StatelessWidget {
                 return state.when(
                   loading: () => Center(child: Text(i18n.events.list.loading)),
                   failed: (e) => Center(child: Text("${i18n.events.list.error}: $e")),
-                  loaded: (events) => (events.isEmpty) ? Center(child: Text(i18n.events.list.noEvents)) : EventList(events: events),
+                  loaded:
+                      (events) =>
+                          (events.isEmpty)
+                              ? Center(child: Text(i18n.events.list.noEvents))
+                              : EventList(events: events, controller: _scrollController),
                 );
               },
             ),
@@ -73,13 +95,15 @@ class EventListPage extends StatelessWidget {
 }
 
 class EventList extends StatelessWidget {
-  const EventList({super.key, required this.events});
+  const EventList({super.key, required this.events, this.controller});
 
   final List<Event> events;
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      controller: controller,
       itemCount: events.length,
       itemBuilder: (context, index) {
         final event = events[index];
