@@ -1,9 +1,10 @@
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
 import 'package:dancee_app/features/events/event_repository.dart';
+import 'package:dancee_shared/entities/event.dart';
 import 'package:vader_app/vader_app.dart';
 
-class EventListCubit extends Cubit<EventListState> {
-  EventListCubit({required this.eventRepository}) : super(EventListState.loading()) {
+class EventAllListCubit extends Cubit<EventListState> {
+  EventAllListCubit({required this.eventRepository}) : super(EventListState.loading()) {
     init();
   }
 

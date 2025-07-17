@@ -35,6 +35,9 @@ events:
     actions:
       filter: "Filtrovat"
       add: "Přidat událost"
+    all: "Vše"
+    location: "Lokalita:"
+    no_events: "Žádné události nebyly nalezeny."
   detail:
     title: "Detail události"
     describe: "Popis"

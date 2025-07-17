@@ -35,6 +35,9 @@ events:
     actions:
       filter: "Filter"
       add: "Add event"
+    all: "All"
+    location: "Location:"
+    no_events: "No events found."
   detail:
     title: "Event detail"
     describe: "Description"

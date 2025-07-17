@@ -11,5 +11,5 @@ sealed class EventListState with _$EventListState {
 
   const factory EventListState.failed(error) = EventListStateFailed;
 
-  const factory EventListState.loaded(List<Event> event) = EventListStateLoaded;
+  const factory EventListState.loaded(List<Event> events) = EventListStateLoadedAll;
 }

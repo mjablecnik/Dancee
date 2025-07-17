@@ -58,3 +58,37 @@ extension DateTimeRangeSerialization on DateTimeRange {
     return DateTimeRange(start: DateTime.parse(json["start"]!), end: DateTime.parse(json["end"]!));
   }
 }
+
+const Map<String, String> regionFilter = {
+  '-- Celá Česká republika --': 'All',
+  'Hlavní město Praha': 'Hlavní město Praha',
+  'Středočeský kraj': 'Středočeský kraj',
+  'Jihočeský kraj': 'Jihočeský kraj',
+  'Jihomoravský kraj': 'Jihomoravský kraj',
+  'Karlovarský kraj': 'Karlovarský kraj',
+  'Královéhradecký kraj': 'Královéhradecký kraj',
+  'Liberecký kraj': 'Liberecký kraj',
+  'Moravskoslezský kraj': 'Moravskoslezský kraj',
+  'Olomoucký kraj': 'Olomoucký kraj',
+  'Pardubický kraj': 'Pardubický kraj',
+  'Plzeňský kraj': 'Plzeňský kraj',
+  'Vysočina': 'Kraj Vysočina',
+  'Zlínský kraj': 'Zlínský kraj',
+  '-- Zahraničí --': 'Other',
+};
+
+const List<String> czechRegions = [
+  'Jihomoravský kraj',
+  'Královéhradecký kraj',
+  'Hlavní město Praha',
+  'Středočeský kraj',
+  'Olomoucký kraj',
+  'Jihočeský kraj',
+  'Moravskoslezský kraj',
+  'Liberecký kraj',
+  'Zlínský kraj',
+  'Plzeňský kraj',
+  'Karlovarský kraj',
+  'Kraj Vysočina',
+  'Pardubický kraj',
+];

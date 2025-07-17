@@ -16,6 +16,8 @@ export 'design/elements/chip/chip.style.dart';
 export 'design/elements/chip/chip.dart';
 export 'design/elements/label/label.dart';
 export 'design/elements/label/label.style.dart';
+export 'design/elements/fields/drop_down_field/drop_down_field.style.dart';
+export 'design/elements/fields/drop_down_field/drop_down_field.dart';
 export 'design/layouts/page_layout/page_layout.style.dart';
 export 'design/layouts/page_layout/page_layout.dart';
 export 'constants/assets.dart';
@@ -27,5 +29,6 @@ export 'package:dancee_design/design/design.theme.dart';
 export 'package:dancee_design/design/components/components.style.dart';
 export 'package:dancee_design/design/elements/elements.style.dart';
 export 'package:dancee_design/design/elements/buttons/buttons.style.dart';
+export 'package:dancee_design/design/elements/fields/fields.style.dart';
 export 'package:dancee_design/design/layouts/layouts.style.dart';
 

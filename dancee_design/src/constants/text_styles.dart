@@ -83,4 +83,12 @@ class TextStyles {
     letterSpacing: 0.1,
     fontSize: 12,
   );
+
+  static const TextStyle dropdownTextStyle = TextStyle(
+    fontFamily: AppFonts.inter,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+    fontSize: 14,
+    color: AppColors.grey700,
+  );
 }

@@ -1,5 +1,6 @@
+import 'package:dancee_app/features/events/logic/event_filtered_list_cubit.dart';
 import 'package:dancee_design/dancee_design.dart';
-import 'package:dancee_app/features/events/logic/event_list_cubit.dart';
+import 'package:dancee_app/features/events/logic/event_all_list_cubit.dart';
 import 'package:dancee_app/features/events/logic/event_list_state.dart';
 import 'package:dancee_shared/entities/event.dart';
 import 'package:dancee_shared/utils.dart';
@@ -30,15 +31,40 @@ class EventListPage extends StatelessWidget {
       child: Column(
         children: [
           //ActionSection(),
-          BlocBuilder<EventListCubit, EventListState>(
-            bloc: injector.use<EventListCubit>(),
-            builder: (context, state) {
-              return state.when(
-                loading: () => Text(i18n.events.list.loading),
-                failed: (e) => Text("${i18n.events.list.error}: $e"),
-                loaded: (events) => Expanded(child: EventList(events: events)),
-              );
-            },
+          Container(
+            color: AppColors.grey200,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                spacing: 16,
+                children: [
+                  Text(i18n.events.list.location, style: TextStyles.mediumTitleTextStyle.copyWith(fontWeight: FontWeight.w500)),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: 260,
+                      child: DropDownField(
+                        initialValue: i18n.events.list.all,
+                        items: Map.fromEntries(regionFilter.entries.map((e) => MapEntry(e.value, e.key))),
+                        onChange: (value) => injector.use<EventFilteredListCubit>().filterByRegion(value),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: BlocBuilder<EventFilteredListCubit, EventListState>(
+              bloc: injector.use<EventFilteredListCubit>(),
+              builder: (context, state) {
+                return state.when(
+                  loading: () => Center(child: Text(i18n.events.list.loading)),
+                  failed: (e) => Center(child: Text("${i18n.events.list.error}: $e")),
+                  loaded: (events) => (events.isEmpty) ? Center(child: Text(i18n.events.list.noEvents)) : EventList(events: events),
+                );
+              },
+            ),
           ),
         ],
       ),
