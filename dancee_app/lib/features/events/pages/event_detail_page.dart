@@ -31,8 +31,7 @@ class EventDetailPage extends StatelessWidget {
       child: Column(
         spacing: 20,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 130,
+          Expanded(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -60,6 +59,7 @@ class EventDetailPage extends StatelessWidget {
               launchUrl(Uri.parse(event.originalUrl));
             },
           ),
+          const SizedBox(),
         ],
       ),
     );
