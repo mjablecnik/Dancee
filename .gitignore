@@ -48,4 +48,5 @@ node_modules/
 config.dart
 
 dancee_backend/serinus_service/bin/
+devtools_options.yaml
 
