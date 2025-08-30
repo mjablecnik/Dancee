@@ -23,7 +23,7 @@ class ErrorService extends Provider {
   Future<bool> createError(String url, String message) async {
     try {
       if (!await existsError(url)) {
-        await surrealDB.create('errors', {'url': url, 'message': message});
+        await surrealDB.create('errors', {'url': url, 'message': message, 'datetime': DateTime.now().toIso8601String()});
         return true;
       } else {
         return false;
