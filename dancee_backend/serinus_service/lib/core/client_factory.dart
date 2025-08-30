@@ -1,3 +1,4 @@
+import 'package:ai_clients/ai_clients.dart';
 import 'package:dio/dio.dart';
 import 'package:serinus/serinus.dart';
 import 'dart:convert';
@@ -18,64 +19,26 @@ abstract class IAiClient extends Provider {
   Future<Map<String, dynamic>> query({required String rules, required String question, required String queryName});
 }
 
-class AiClient extends IAiClient {
-  DateTime lastRequest = DateTime.now().subtract(Duration(minutes: 1));
-  final Dio dio = _getTogetherAiDio();
+class DanceeAiClient extends IAiClient {
+  DanceeAiClient() : aiClient = AiClients.gemini(apiKey: ServerConfig.geminiApiKey, delay: Duration(seconds: 10));
 
-  static _getTogetherAiDio() {
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: 'https://api.together.xyz',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${ServerConfig.togetherAiSdkKey}',
-        },
-      ),
-    );
-    //dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-    return dio;
-  }
-
-  Future<Response> _makeQuery(Future<Response> Function() query) async {
-    if (lastRequest.isAfter(DateTime.now().subtract(Duration(seconds: 11)))) {
-      await Future.delayed(Duration(seconds: 11) - DateTime.now().difference(lastRequest));
-    }
-
-    final Response response = await query.call();
-
-    lastRequest = DateTime.now();
-    return response;
-  }
+  final GeminiClient aiClient;
 
   Future<Map<String, dynamic>> query({
     required String rules,
     required String question,
     required String queryName,
   }) async {
-    final payload = {
-      'model': ServerConfig.togetherAiSdkModel,
-      'stop': ['</s>', '[/INST]'],
-      'max_tokens': 3000,
-      'temperature': 0.7,
-      'top_p': 0.7,
-      'top_k': 50,
-      'repetition_penalty': 1,
-      'messages': [
-        {'role': 'system', 'content': rules},
-        {'role': 'user', 'content': question},
-      ],
-    };
-
-    final Response response = await _makeQuery(() => dio.post('/v1/chat/completions', data: payload));
-
-    final data = response.data;
-    logger.info(queryName + ': ' + data['usage'].toString());
-    //logger.info(queryName + ': ' + data['choices'][0]['message']['content']);
-    //print(queryName + ': ' + data['choices'][0]['message']['content']);
-
-    final String content = data['choices'][0]['message']['content'].replaceAll('\\\n', '\\n');
-
-    return jsonDecode(content.replaceAll('```', ''));
+    try {
+      final String response = await aiClient.simpleQuery(system: rules, prompt: question);
+      //print(response);
+      final result = jsonDecode(response.replaceAll('\\\n', '\\n').replaceAll('```json', '').replaceAll('```', ''));
+      //print(result);
+      return result;
+    } catch (e) {
+      logger.error("Cannot make AI query");
+      logger.error(e.toString());
+      rethrow;
+    }
   }
 }

@@ -22,7 +22,7 @@ class VenueService extends Provider {
     final latitude = location['coordinates']['latitude'];
     final longitude = location['coordinates']['longitude'];
 
-    final api = GoogleGeocodingApi(ServerConfig.googelApiKey, isLogged: false);
+    final api = GoogleGeocodingApi(ServerConfig.googleApiKey, isLogged: false);
     return api.reverse('$latitude,$longitude', language: 'en');
   }
 

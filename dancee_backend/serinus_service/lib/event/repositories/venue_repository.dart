@@ -6,7 +6,7 @@ import 'package:serinus_service/core/client_factory.dart';
 class VenueRepository extends Provider {
   const VenueRepository({required this.aiClient, required this.surrealDB});
 
-  final AiClient aiClient;
+  final DanceeAiClient aiClient;
   final SurrealDB surrealDB;
 
   Future<List<Venue>> selectAllVenues() async {

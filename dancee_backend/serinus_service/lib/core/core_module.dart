@@ -15,7 +15,7 @@ class AppModule extends VaderModule {
     if (_injector != null) return _injector;
 
     _injector = Injector();
-    _injector!.addSingleton(AiClient.new);
+    _injector!.addSingleton(DanceeAiClient.new);
     _injector!.addLazyInstance<SurrealDB>(SurrealDbClient.init());
     _injector!.waitFor<SurrealDB>(() {
       _injector!.addSingleton(ErrorService.new);
